@@ -1,19 +1,17 @@
+import threading
+import time
+import collections
 import pyaudio
 import webrtcvad
 import wave
-import collections
-import time
-from queue import Queue
-from threading import Thread
-import requests
-import json
-import os
 import sounddevice as sd
 import soundfile as sf
 from funasr import AutoModel
-from playsound import playsound
+import requests
+import json
+from queue import Queue
 
-# === 参数配置 ===
+# ====== 全局变量 ======
 RATE = 16000
 CHANNELS = 1
 FORMAT = pyaudio.paInt16
@@ -22,56 +20,39 @@ CHUNK_SIZE = int(RATE * CHUNK_MS / 1000)
 VAD_MODE = 2
 SILENCE_TIMEOUT = 3.0
 OUTPUT_FILE = "recorded.wav"
+flag_path = "/tmp/flag.txt"
 
-# 唤醒词与文件触发信号
-recording_signal = False
-wake_up_signal = False
-file_path = "/tmp/flag.txt"
+interrupt_event = threading.Event()  # 全局中断事件
+process_lock = threading.Lock()      # 保证单流程
+tts_queue = Queue(maxsize=1)         # 队列长度=1,最新任务覆盖旧任务
+player_queue = Queue(maxsize=1)
+stt_model = AutoModel(model="/home/b/daniel/funasr-project/FunASR/models", disable_update=True)
+conversation_id = None
 
-tts_q = Queue()
-player_q = Queue()
-
-# ====================
-
-def set_recording_signal(value: bool):
-    global recording_signal
-    recording_signal = value
-
-def set_wake_up_signal(value: bool):
-    global wake_up_signal
-    wake_up_signal = value
-
-# ======= 录音器类 =======
+# ====== 录音类 ======
 class MicRecorder:
     def __init__(self):
         self.vad = webrtcvad.Vad(VAD_MODE)
         self.pa = pyaudio.PyAudio()
-        self.stream = self.pa.open(
-            format=FORMAT,
-            channels=CHANNELS,
-            rate=RATE,
-            input=True,
-            frames_per_buffer=CHUNK_SIZE
-        )
+        self.stream = self.pa.open(format=FORMAT, channels=CHANNELS,
+                                   rate=RATE, input=True, frames_per_buffer=CHUNK_SIZE)
 
     def is_speech(self, frame_bytes):
         return self.vad.is_speech(frame_bytes, RATE)
 
     def record_once(self):
-        print("[*] 等待录音信号或唤醒词...")
-        global recording_signal, wake_up_signal
-        while not recording_signal and not wake_up_signal:
-            time.sleep(0.1)
+        print("[*] 等待录音信号...")
+        while not interrupt_event.is_set():
+            time.sleep(0.05)
 
         print("[+] 录音开始...")
         frames = []
-        silent_chunks = collections.deque(maxlen=int(SILENCE_TIMEOUT * 1000 / CHUNK_MS))
+        silent_chunks = collections.deque(maxlen=int(SILENCE_TIMEOUT*1000/CHUNK_MS))
 
         while True:
-            if wake_up_signal:
-                print("[!] 唤醒词打断录音！")
+            if interrupt_event.is_set() and frames:
+                print("[!] 录音被打断")
                 break
-
             frame = self.stream.read(CHUNK_SIZE, exception_on_overflow=False)
             if self.is_speech(frame):
                 frames.append(frame)
@@ -81,11 +62,10 @@ class MicRecorder:
                     silent_chunks.append(frame)
                     if len(silent_chunks) == silent_chunks.maxlen:
                         frames.extend(silent_chunks)
-                        print("[-] 静音超时，结束录音")
+                        print("[*] 静音结束")
                         break
-
         self._save_wav(frames)
-        print(f"[+] 已保存到 {OUTPUT_FILE}")
+        print(f"[+] 已保存 {OUTPUT_FILE}")
         return OUTPUT_FILE
 
     def _save_wav(self, frames):
@@ -100,141 +80,109 @@ class MicRecorder:
         self.stream.close()
         self.pa.terminate()
 
-# ======= 唤醒词监听线程 =======
-def wake_up_listener():
-    global wake_up_signal
-    print("[*] 唤醒词监听启动...")
-    vad = webrtcvad.Vad(1)
-    pa = pyaudio.PyAudio()
-    stream = pa.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True,
-                     frames_per_buffer=CHUNK_SIZE)
+# ====== 可打断播放 ======
+def play_audio_interruptible(sound):
+    if player_queue.full():
+        player_queue.get_nowait()  # 丢弃旧任务
+    data, fs = sf.read(sound, dtype='float32')
+    sd.play(data, fs)
+    while sd.get_stream().active:
+        if interrupt_event.is_set():
+            sd.stop()
+            print("[!] 播放被打断")
+            break
+        sd.sleep(50)
+
+def player_worker():
     while True:
-        frame = stream.read(CHUNK_SIZE, exception_on_overflow=False)
-        if vad.is_speech(frame, RATE):
-            detected_text = mock_asr(frame)  # 替换为实际唤醒词识别
-            if "嘿助手" in detected_text:
-                print("[!] 唤醒词触发！")
-                wake_up_signal = True
-        time.sleep(0.01)
+        sound = player_queue.get()
+        play_audio_interruptible(sound)
+        player_queue.task_done()
 
-def mock_asr(frame_bytes):
-    # TODO: 替换为快速唤醒词识别模型
-    return ""  # 返回识别文本
+# ====== 文件监听 ======
+def monitor_flag(file_path):
+    last_value = None
+    global interrupt_event
+    while True:
+        try:
+            with open(file_path, 'r') as f:
+                line = f.readline().strip()
+                if line == "True" and line != last_value:
+                    print("[*] 唤醒信号触发")
+                    interrupt_event.set()  # 中断当前流程
+                    last_value = line
+                    with open(file_path, 'w') as fw:
+                        fw.write("False")
+        except FileNotFoundError:
+            pass
+        time.sleep(0.2)
 
-# ======= FunASR识别 =======
-def transcribe_with_funasr(filepath, stt_model):
-    print("[*] 正在识别音频内容...")
-    res = stt_model.generate(input=filepath, data_type="sound", inference_clip_length=250, disable_update=True)
-    word_text = res[0]['text']
-    print("[识别结果]:", word_text)
-    return word_text
+# ====== STT → RAG → TTS 流程 ======
+def stt_rag_tts_pipeline(filepath):
+    global conversation_id
+    if interrupt_event.is_set():
+        print("[*] 流程被中断，STT停止")
+        return
+    # STT
+    text = stt_model.generate(input=filepath, data_type="sound", inference_clip_length=250, disable_update=True)[0]['text']
+    print("[STT]", text)
+    if interrupt_event.is_set():
+        return
 
-# ======= RAG API调用 =======
-def AI_response(user_text, conversation_id):
+    # RAG
     API_URL = "http://192.168.166.144/v1/chat-messages"
     API_KEY = "app-MAzgaqOFk2jgM7wspctReZeG"
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "text/event-stream",
-        "Authorization": f"Bearer {API_KEY}"
-    }
-    payload = {
-        "inputs": {},
-        "query": user_text,
-        "response_mode": "streaming",
-        "conversation_id": conversation_id,
-        "user": "ShowRoom"
-    }
-    new_conv_id = conversation_id
+    headers = {"Content-Type": "application/json", "Accept": "text/event-stream",
+               "Authorization": f"Bearer {API_KEY}"}
+    payload = {"inputs": {}, "query": text, "response_mode": "streaming",
+               "conversation_id": conversation_id, "user": "ShowRoom"}
     try:
         response = requests.post(API_URL, json=payload, headers=headers, stream=True)
         response.raise_for_status()
-        flag = 0
         stxt = ''
         for line in response.iter_lines():
+            if interrupt_event.is_set():
+                print("[!] RAG 被中断")
+                return
             if not line:
                 continue
             decoded = line.decode('utf-8')
             if decoded.startswith("data:"):
                 data = json.loads(decoded[len("data:"):])
-                if data.get("answer", "") == "<think>":
-                    flag = 1
-                if data.get("answer", "") == "</think>":
-                    flag = 0
-                    continue
-                if flag == 0:
-                    stxt += data.get("answer", "")
-                if stxt and (stxt[-1] in ['，', '。']):
-                    print(stxt)
-                    test_tts(stxt)
-                    stxt = ''
-                if not new_conv_id:
-                    new_conv_id = data.get("conversation_id", conversation_id)
-        return new_conv_id
-    except requests.exceptions.RequestException as e:
-        print(f"[错误] 请求异常: {e}")
-        return conversation_id
-
-# ======= TTS播放 =======
-def test_tts(tts_text):
-    data = {
-        "spk_id": "中文女",
-        "tts_text": tts_text,
-        "stream": True,
-        "speed": 1.1
-    }
-    response = requests.post("http://192.168.166.144:3005/cosyvoice", json=data)
-    audio_content = b''.join(response.iter_content(chunk_size=1024))
-    pcm2wav(audio_content)
-
-def pcm2wav(pcm_data):
-    wav_file = 'outputs/gen_audio.wav'
-    with wave.open(wav_file, "wb") as wav:
-        wav.setnchannels(1)
-        wav.setsampwidth(2)
-        wav.setframerate(24000)
-        wav.writeframes(pcm_data)
-    playsound(wav_file)
-
-def play_audio(sound_file):
-    data, fs = sf.read(sound_file, dtype='float32')
-    sd.play(data, fs)
-    sd.wait()
-
-# ======= 文件触发监控 =======
-def monitor_file(file_path):
-    try:
-        with open(file_path, 'r+') as f:
-            line = f.readline().strip()
-            if line == "True":
-                open(file_path, 'w').close()
-                return True
+                if data.get("answer") not in ["<think>", "</think>"]:
+                    stxt += data.get("answer","")
+                    if stxt and stxt[-1] in ['，','。']:
+                        print("[RAG]", stxt)
+                        if not player_queue.full():
+                            player_queue.put('outputs/gen_audio.wav')
+                        stxt = ''
     except:
         pass
-    return False
 
-# ======= 主程序 =======
+# ====== TTS 线程 ======
+def tts_worker():
+    while True:
+        text = tts_queue.get()
+        if interrupt_event.is_set():
+            tts_queue.task_done()
+            continue
+        # 生成音频并放入播放队列
+        print("[TTS]", text)
+        if not player_queue.full():
+            player_queue.put('outputs/gen_audio.wav')
+        tts_queue.task_done()
+
+# ====== 主循环 ======
 if __name__ == "__main__":
-    Thread(target=wake_up_listener, daemon=True).start()
-
-    stt_model = AutoModel(model="/home/b/daniel/funasr-project/FunASR/models", disable_update=True)
+    recorder = MicRecorder()
+    threading.Thread(target=monitor_flag, args=(flag_path,), daemon=True).start()
+    threading.Thread(target=player_worker, daemon=True).start()
+    threading.Thread(target=tts_worker, daemon=True).start()
 
     while True:
-        try:
-            trigger = monitor_file(file_path) or wake_up_signal
-            if trigger:
-                print("[*] 录音触发")
-                wake_up_signal = False
-                recording_signal = True
-
-                recorder = MicRecorder()
+        if interrupt_event.is_set():
+            interrupt_event.clear()
+            with process_lock:  # 保证单流程
                 filepath = recorder.record_once()
-                recording_signal = False
-
-                user_text = transcribe_with_funasr(filepath, stt_model)
-                AI_response(user_text, conversation_id=None)
-        except KeyboardInterrupt:
-            break
-        except Exception as e:
-            print("Error:", e)
-        time.sleep(0.5)
+                threading.Thread(target=stt_rag_tts_pipeline, args=(filepath,), daemon=True).start()
+        time.sleep(0.1)

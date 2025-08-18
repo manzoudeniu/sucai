@@ -1,0 +1,240 @@
+import pyaudio
+import webrtcvad
+import wave
+import collections
+import time
+from queue import Queue
+from threading import Thread
+import requests
+import json
+import os
+import sounddevice as sd
+import soundfile as sf
+from funasr import AutoModel
+from playsound import playsound
+
+# === 参数配置 ===
+RATE = 16000
+CHANNELS = 1
+FORMAT = pyaudio.paInt16
+CHUNK_MS = 30
+CHUNK_SIZE = int(RATE * CHUNK_MS / 1000)
+VAD_MODE = 2
+SILENCE_TIMEOUT = 3.0
+OUTPUT_FILE = "recorded.wav"
+
+# 唤醒词与文件触发信号
+recording_signal = False
+wake_up_signal = False
+file_path = "/tmp/flag.txt"
+
+tts_q = Queue()
+player_q = Queue()
+
+# ====================
+
+def set_recording_signal(value: bool):
+    global recording_signal
+    recording_signal = value
+
+def set_wake_up_signal(value: bool):
+    global wake_up_signal
+    wake_up_signal = value
+
+# ======= 录音器类 =======
+class MicRecorder:
+    def __init__(self):
+        self.vad = webrtcvad.Vad(VAD_MODE)
+        self.pa = pyaudio.PyAudio()
+        self.stream = self.pa.open(
+            format=FORMAT,
+            channels=CHANNELS,
+            rate=RATE,
+            input=True,
+            frames_per_buffer=CHUNK_SIZE
+        )
+
+    def is_speech(self, frame_bytes):
+        return self.vad.is_speech(frame_bytes, RATE)
+
+    def record_once(self):
+        print("[*] 等待录音信号或唤醒词...")
+        global recording_signal, wake_up_signal
+        while not recording_signal and not wake_up_signal:
+            time.sleep(0.1)
+
+        print("[+] 录音开始...")
+        frames = []
+        silent_chunks = collections.deque(maxlen=int(SILENCE_TIMEOUT * 1000 / CHUNK_MS))
+
+        while True:
+            if wake_up_signal:
+                print("[!] 唤醒词打断录音！")
+                break
+
+            frame = self.stream.read(CHUNK_SIZE, exception_on_overflow=False)
+            if self.is_speech(frame):
+                frames.append(frame)
+                silent_chunks.clear()
+            else:
+                if frames:
+                    silent_chunks.append(frame)
+                    if len(silent_chunks) == silent_chunks.maxlen:
+                        frames.extend(silent_chunks)
+                        print("[-] 静音超时，结束录音")
+                        break
+
+        self._save_wav(frames)
+        print(f"[+] 已保存到 {OUTPUT_FILE}")
+        return OUTPUT_FILE
+
+    def _save_wav(self, frames):
+        with wave.open(OUTPUT_FILE, 'wb') as wf:
+            wf.setnchannels(CHANNELS)
+            wf.setsampwidth(self.pa.get_sample_size(FORMAT))
+            wf.setframerate(RATE)
+            wf.writeframes(b''.join(frames))
+
+    def close(self):
+        self.stream.stop_stream()
+        self.stream.close()
+        self.pa.terminate()
+
+# ======= 唤醒词监听线程 =======
+def wake_up_listener():
+    global wake_up_signal
+    print("[*] 唤醒词监听启动...")
+    vad = webrtcvad.Vad(1)
+    pa = pyaudio.PyAudio()
+    stream = pa.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True,
+                     frames_per_buffer=CHUNK_SIZE)
+    while True:
+        frame = stream.read(CHUNK_SIZE, exception_on_overflow=False)
+        if vad.is_speech(frame, RATE):
+            detected_text = mock_asr(frame)  # 替换为实际唤醒词识别
+            if "嘿助手" in detected_text:
+                print("[!] 唤醒词触发！")
+                wake_up_signal = True
+        time.sleep(0.01)
+
+def mock_asr(frame_bytes):
+    # TODO: 替换为快速唤醒词识别模型
+    return ""  # 返回识别文本
+
+# ======= FunASR识别 =======
+def transcribe_with_funasr(filepath, stt_model):
+    print("[*] 正在识别音频内容...")
+    res = stt_model.generate(input=filepath, data_type="sound", inference_clip_length=250, disable_update=True)
+    word_text = res[0]['text']
+    print("[识别结果]:", word_text)
+    return word_text
+
+# ======= RAG API调用 =======
+def AI_response(user_text, conversation_id):
+    API_URL = "http://192.168.166.144/v1/chat-messages"
+    API_KEY = "app-MAzgaqOFk2jgM7wspctReZeG"
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "text/event-stream",
+        "Authorization": f"Bearer {API_KEY}"
+    }
+    payload = {
+        "inputs": {},
+        "query": user_text,
+        "response_mode": "streaming",
+        "conversation_id": conversation_id,
+        "user": "ShowRoom"
+    }
+    new_conv_id = conversation_id
+    try:
+        response = requests.post(API_URL, json=payload, headers=headers, stream=True)
+        response.raise_for_status()
+        flag = 0
+        stxt = ''
+        for line in response.iter_lines():
+            if not line:
+                continue
+            decoded = line.decode('utf-8')
+            if decoded.startswith("data:"):
+                data = json.loads(decoded[len("data:"):])
+                if data.get("answer", "") == "<think>":
+                    flag = 1
+                if data.get("answer", "") == "</think>":
+                    flag = 0
+                    continue
+                if flag == 0:
+                    stxt += data.get("answer", "")
+                if stxt and (stxt[-1] in ['，', '。']):
+                    print(stxt)
+                    test_tts(stxt)
+                    stxt = ''
+                if not new_conv_id:
+                    new_conv_id = data.get("conversation_id", conversation_id)
+        return new_conv_id
+    except requests.exceptions.RequestException as e:
+        print(f"[错误] 请求异常: {e}")
+        return conversation_id
+
+# ======= TTS播放 =======
+def test_tts(tts_text):
+    data = {
+        "spk_id": "中文女",
+        "tts_text": tts_text,
+        "stream": True,
+        "speed": 1.1
+    }
+    response = requests.post("http://192.168.166.144:3005/cosyvoice", json=data)
+    audio_content = b''.join(response.iter_content(chunk_size=1024))
+    pcm2wav(audio_content)
+
+def pcm2wav(pcm_data):
+    wav_file = 'outputs/gen_audio.wav'
+    with wave.open(wav_file, "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(24000)
+        wav.writeframes(pcm_data)
+    playsound(wav_file)
+
+def play_audio(sound_file):
+    data, fs = sf.read(sound_file, dtype='float32')
+    sd.play(data, fs)
+    sd.wait()
+
+# ======= 文件触发监控 =======
+def monitor_file(file_path):
+    try:
+        with open(file_path, 'r+') as f:
+            line = f.readline().strip()
+            if line == "True":
+                open(file_path, 'w').close()
+                return True
+    except:
+        pass
+    return False
+
+# ======= 主程序 =======
+if __name__ == "__main__":
+    Thread(target=wake_up_listener, daemon=True).start()
+
+    stt_model = AutoModel(model="/home/b/daniel/funasr-project/FunASR/models", disable_update=True)
+
+    while True:
+        try:
+            trigger = monitor_file(file_path) or wake_up_signal
+            if trigger:
+                print("[*] 录音触发")
+                wake_up_signal = False
+                recording_signal = True
+
+                recorder = MicRecorder()
+                filepath = recorder.record_once()
+                recording_signal = False
+
+                user_text = transcribe_with_funasr(filepath, stt_model)
+                AI_response(user_text, conversation_id=None)
+        except KeyboardInterrupt:
+            break
+        except Exception as e:
+            print("Error:", e)
+        time.sleep(0.5)

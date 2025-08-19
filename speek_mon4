@@ -107,4 +107,141 @@ def AI_response(user_text, conversation_id):
     user = "ShowRoom"
     headers = {
         "Content-Type": "application/json",
-        "Accept": "tex
+        "Accept": "text/event-stream",
+        "Authorization": f"Bearer {API_KEY}"
+    }
+
+    payload = {
+        "inputs": {},
+        "query": user_text,
+        "response_mode": "streaming",
+        "conversation_id": conversation_id,
+        "user": user
+    }
+
+    try:
+        response = requests.post(API_URL, json=payload, headers=headers, stream=True)
+        response.raise_for_status()
+
+        new_conv_id, flag, stxt = None, 0, ''
+        for line in response.iter_lines():
+            if interrupt_event.is_set():
+                print("[-] RAG 响应被打断")
+                return None
+            if not line:
+                continue
+            decoded = line.decode('utf-8')
+            if decoded.startswith("data:"):
+                data = json.loads(decoded[len("data:"):])
+                if data.get("answer") == "<think>":
+                    flag = 1
+                elif data.get("answer") == "</think>":
+                    flag = 0
+                    continue
+                elif flag == 0:
+                    stxt += data.get("answer", "")
+                    if stxt and stxt[-1] in ('，', '。'):
+                        print("[RAG片段]:", stxt)
+                        tts_q.put(stxt)
+                        stxt = ''
+                if not new_conv_id:
+                    new_conv_id = data.get("conversation_id", conversation_id)
+        return new_conv_id
+    except requests.exceptions.RequestException as e:
+        print(f"[错误] RAG请求异常: {e}")
+        return None
+
+# ============ TTS ============
+def tts_worker():
+    while True:
+        text = tts_q.get()
+        if interrupt_event.is_set():
+            tts_q.task_done()
+            continue
+        try:
+            test_tts(text)
+        finally:
+            tts_q.task_done()
+
+def test_tts(tts_text):
+    data = {
+        "spk_id": "中文女",
+        "tts_text": tts_text,
+        "stream": True,
+        "speed": 1.1,
+    }
+    response = requests.post("http://192.168.166.144:3005/cosyvoice", json=data)
+    audio_content = b''.join(response.iter_content(chunk_size=1024))
+    out_file = pcm2wav(audio_content)
+    player_q.put(out_file)
+
+def pcm2wav(pcm_data):
+    out_file = 'outputs/gen_audio.wav'
+    with wave.open(out_file, "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(24000)
+        wav.writeframes(pcm_data)
+    return out_file
+
+# ============ 播放 ============
+def player_worker():
+    while True:
+        audio = player_q.get()
+        if interrupt_event.is_set():
+            player_q.task_done()
+            continue
+        try:
+            data, fs = sf.read(audio, dtype='float32')
+            sd.play(data, fs)
+            while sd.get_stream().active:
+                if interrupt_event.is_set():
+                    sd.stop()
+                    print("[-] 播放被打断")
+                    break
+                time.sleep(0.05)
+        finally:
+            player_q.task_done()
+
+# ============ 主程序 ============
+if __name__ == "__main__":
+    try:
+        threading.Thread(target=tts_worker, daemon=True).start()
+        threading.Thread(target=player_worker, daemon=True).start()
+        stt_model = AutoModel(model="/home/b/daniel/funasr-project/FunASR/models", disable_update=True)
+
+        while True:
+            try:
+                with open(flag_path, 'r') as f:
+                    line = f.readline().strip()
+                if line == "True":
+                    print("[信号] 检测到唤醒信号")
+                    open(flag_path, 'w').close()  # 清空文件
+
+                    global first_wakeup_done
+                    if not first_wakeup_done:
+                        print("[流程] 第一次唤醒，正常执行")
+                        first_wakeup_done = True
+                    else:
+                        # 🔴 非第一次唤醒，打断当前流程
+                        interrupt_event.set()
+                        time.sleep(0.1)
+                        interrupt_event.clear()
+
+                    recording_signal = True
+                    recorder = MicRecorder()
+                    filepath = recorder.record_once()
+                    recorder.close()
+                    recording_signal = False
+
+                    if filepath:  # 如果未被打断
+                        user_text = transcribe_with_funasr(filepath, stt_model)
+                        AI_response(user_text, conversation_id=None)
+
+            except FileNotFoundError:
+                print("[警告] flag 文件未找到，等待创建...")
+            except Exception as e:
+                print(f"[异常] {e}")
+            time.sleep(0.5)
+    except KeyboardInterrupt:
+        print("\n[退出] 用户中断")

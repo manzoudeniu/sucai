@@ -1,0 +1,213 @@
+import pyaudio
+import webrtcvad
+import wave
+import threading
+import time
+import collections
+import requests
+import json
+import os
+from queue import Queue
+import sounddevice as sd
+import soundfile as sf
+from funasr import AutoModel
+
+# === 参数配置部分 ===
+RATE = 16000
+CHANNELS = 1
+FORMAT = pyaudio.paInt16
+CHUNK_MS = 30
+CHUNK_SIZE = int(RATE * CHUNK_MS / 1000)
+VAD_MODE = 2
+SILENCE_TIMEOUT = 3.0
+OUTPUT_FILE = "recorded.wav"
+
+# 队列
+tts_q = Queue()
+player_q = Queue()
+
+# 外部信号
+recording_signal = False
+flag_path = "/tmp/flag.txt"
+
+# ============ 录音类 ============
+class MicRecorder:
+    def __init__(self):
+        self.vad = webrtcvad.Vad(VAD_MODE)
+        self.pa = pyaudio.PyAudio()
+        self.stream = self.pa.open(
+            format=FORMAT,
+            channels=CHANNELS,
+            rate=RATE,
+            input=True,
+            frames_per_buffer=CHUNK_SIZE
+        )
+
+    def is_speech(self, frame_bytes):
+        return self.vad.is_speech(frame_bytes, RATE)
+
+    def record_once(self):
+        print("[*] 等待录音信号...")
+        while not recording_signal:
+            time.sleep(0.1)
+
+        print("[+] 录音开始")
+        frames = []
+        silent_chunks = collections.deque(maxlen=int(SILENCE_TIMEOUT * 1000 / CHUNK_MS))
+
+        while True:
+            frame = self.stream.read(CHUNK_SIZE, exception_on_overflow=False)
+            if self.is_speech(frame):
+                frames.append(frame)
+                silent_chunks.clear()
+            else:
+                if frames:  # 已经开始录音
+                    silent_chunks.append(frame)
+                    if len(silent_chunks) == silent_chunks.maxlen:
+                        frames.extend(silent_chunks)
+                        print("[-] 静音超时，录音结束")
+                        break
+
+        self._save_wav(frames)
+        return OUTPUT_FILE
+
+    def _save_wav(self, frames):
+        with wave.open(OUTPUT_FILE, 'wb') as wf:
+            wf.setnchannels(CHANNELS)
+            wf.setsampwidth(self.pa.get_sample_size(FORMAT))
+            wf.setframerate(RATE)
+            wf.writeframes(b''.join(frames))
+
+    def close(self):
+        self.stream.stop_stream()
+        self.stream.close()
+        self.pa.terminate()
+
+# ============ 语音转文本 ============
+def transcribe_with_funasr(filepath, stt_model):
+    print("[*] 正在识别音频内容...")
+    res = stt_model.generate(input=filepath, data_type="sound", inference_clip_length=250, disable_update=True)
+    word_text = res[0]['text']
+    print("[识别结果]:", word_text)
+    return word_text
+
+# ============ AI 响应（RAG API） ============
+def AI_response(user_text, conversation_id):
+    API_URL = "http://192.168.166.144/v1/chat-messages"
+    API_KEY = "app-MAzgaqOFk2jgM7wspctReZeG"
+    user = "ShowRoom"
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "text/event-stream",
+        "Authorization": f"Bearer {API_KEY}"
+    }
+
+    payload = {
+        "inputs": {},
+        "query": user_text,
+        "response_mode": "streaming",
+        "conversation_id": conversation_id,
+        "user": user
+    }
+
+    try:
+        response = requests.post(API_URL, json=payload, headers=headers, stream=True)
+        response.raise_for_status()
+
+        new_conv_id, flag, stxt = None, 0, ''
+        for line in response.iter_lines():
+            if not line:
+                continue
+            decoded = line.decode('utf-8')
+            if decoded.startswith("data:"):
+                data = json.loads(decoded[len("data:"):])
+                if data.get("answer") == "<think>":
+                    flag = 1
+                elif data.get("answer") == "</think>":
+                    flag = 0
+                    continue
+                elif flag == 0:
+                    stxt += data.get("answer", "")
+                    if stxt and stxt[-1] in ('，', '。'):
+                        print("[RAG片段]:", stxt)
+                        tts_q.put(stxt)
+                        stxt = ''
+                if not new_conv_id:
+                    new_conv_id = data.get("conversation_id", conversation_id)
+        return new_conv_id
+    except requests.exceptions.RequestException as e:
+        print(f"[错误] RAG请求异常: {e}")
+        return None
+
+# ============ TTS ============
+def tts_worker():
+    while True:
+        text = tts_q.get()
+        try:
+            test_tts(text)
+        finally:
+            tts_q.task_done()
+
+def test_tts(tts_text):
+    data = {
+        "spk_id": "中文女",
+        "tts_text": tts_text,
+        "stream": True,
+        "speed": 1.1,
+    }
+    response = requests.post("http://192.168.166.144:3005/cosyvoice", json=data)
+    audio_content = b''.join(response.iter_content(chunk_size=1024))
+    out_file = pcm2wav(audio_content)
+    player_q.put(out_file)
+
+def pcm2wav(pcm_data):
+    out_file = 'outputs/gen_audio.wav'
+    with wave.open(out_file, "wb") as wav:
+        wav.setnchannels(1)
+        wav.setsampwidth(2)
+        wav.setframerate(24000)
+        wav.writeframes(pcm_data)
+    return out_file
+
+# ============ 播放 ============
+def player_worker():
+    while True:
+        audio = player_q.get()
+        try:
+            data, fs = sf.read(audio, dtype='float32')
+            sd.play(data, fs)
+            sd.wait()
+        finally:
+            player_q.task_done()
+
+# ============ 主程序 ============
+if __name__ == "__main__":
+    try:
+        threading.Thread(target=tts_worker, daemon=True).start()
+        threading.Thread(target=player_worker, daemon=True).start()
+        stt_model = AutoModel(model="/home/b/daniel/funasr-project/FunASR/models", disable_update=True)
+
+        while True:
+            try:
+                with open(flag_path, 'r') as f:
+                    line = f.readline().strip()
+                if line == "True":
+                    print("[信号] 检测到唤醒信号")
+                    open(flag_path, 'w').close()  # 清空文件
+                    global recording_signal
+                    recording_signal = True
+
+                    recorder = MicRecorder()
+                    filepath = recorder.record_once()
+                    recorder.close()
+                    recording_signal = False  # 复位信号
+
+                    user_text = transcribe_with_funasr(filepath, stt_model)
+                    conversation_id = AI_response(user_text, conversation_id=None)
+            except FileNotFoundError:
+                print("[警告] flag 文件未找到，等待创建...")
+            except Exception as e:
+                print(f"[异常] {e}")
+            time.sleep(0.5)
+    except KeyboardInterrupt:
+        print("\n[退出] 用户中断")

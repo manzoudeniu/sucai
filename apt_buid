@@ -1,0 +1,73 @@
+假设我们有一个内核模块 hello_drv（只是示范），要把它打包成可用的 .deb。
+1️⃣ 驱动源代码 (hello_drv.c)
+#include <linux/init.h>
+#include <linux/module.h>
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("You");
+MODULE_DESCRIPTION("Hello Driver Example");
+
+static int __init hello_init(void) {
+    printk(KERN_INFO "HelloDriver: loaded\n");
+    return 0;
+}
+
+static void __exit hello_exit(void) {
+    printk(KERN_INFO "HelloDriver: unloaded\n");
+}
+
+module_init(hello_init);
+module_exit(hello_exit);
+
+2️⃣ Makefile
+obj-m += hello_drv.o
+
+all:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+
+clean:
+	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+3️⃣ Debian 打包目录
+hello-drv/
+├── DEBIAN/
+│   └── control
+└── lib/
+    └── modules/
+        └── $(uname -r)/
+            └── extra/
+                └── hello_drv.ko
+DEBIAN/control
+Package: hello-drv
+Version: 1.0
+Section: kernel
+Priority: optional
+Architecture: amd64
+Maintainer: Your Name <you@example.com>
+Description: Example kernel module package
+ A simple demo driver packaged as a .deb file.
+
+4️⃣ 构建 .deb
+
+假设你已经 make 编译出 hello_drv.ko，把它放到对应目录
+mkdir -p hello-drv/lib/modules/$(uname -r)/extra
+cp hello_drv.ko hello-drv/lib/modules/$(uname -r)/extra/
+mkdir -p hello-drv/DEBIAN
+nano hello-drv/DEBIAN/control   # 写入上面的内容
+
+然后打包：
+dpkg-deb --build hello-drv
+5️⃣ 安装 & 使用
+安装：
+sudo apt install ./hello-drv.deb
+加载驱动：
+depmod -a
+sudo modprobe hello_drv
+查看日志：
+dmesg | tail
+卸载：
+sudo modprobe -r hello_drv
+dmesg | tail
+# 输出: "HelloDriver: unloaded"
+
+
+

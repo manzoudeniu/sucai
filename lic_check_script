@@ -1,12 +1,14 @@
 #!/bin/bash
-# 用法: ./parse_lmstat.sh lmstat.log
-# 输出 CSV，不包含 "floating license" 行
+# parse_lmstat_no_display.sh
+# 用法: ./parse_lmstat_no_display.sh lmstat.log
+# 输出 CSV，不包含 floating license，不输出 Display 字段
 
 logfile="$1"
 
 awk '
 BEGIN {
-    print "Feature,User,Host,Display,Version,LicServer,Port,SessionID,StartTime,Expiry"
+    OFS=","
+    print "Feature,User,Host,Version,LicServer,Port,SessionID,StartTime,Expiry"
 }
 
 # 捕获 Feature 名
@@ -16,42 +18,54 @@ BEGIN {
     expiry=""
 }
 
-# 捕获 expiry 信息
+# 捕获 expiry
 /^  "[^"]+"/ {
-    # 排除 floating license 行
     if ($0 !~ /floating license/) {
         match($0, /expiry:[ \t]*([0-9a-zA-Z-]+)/, m)
-        if (m[1] != "") {
-            expiry=m[1]
-        }
+        if (m[1] != "") expiry=m[1]
     }
 }
 
-# 捕获用户行（排除 "floating license"）
-/^[ \t]+[a-zA-Z0-9._-]+[ \t]+[a-zA-Z0-9._-]+[ \t]+[a-zA-Z0-9.:_-]+[ \t]+[a-zA-Z0-9._-]+[ \t]*\(/ {
+# 捕获用户行
+/^\s+.*\(v.*\)\s+\(.*lic.*\)/ {
     if ($0 !~ /floating license/) {
-        user=$1
-        host=$2
-        display=$3
-        sessionid=$4
+        line=$0
+
+        # user
+        match(line, /^[ \t]*([^\t ]+)/, m)
+        user=m[1]
+        sub(/^[ \t]*[^\t ]+[ \t]+/, "", line)
+
+        # host
+        host=""
+        if (match(line, /^([^\t ()]+)/, m2)) {
+            host=m2[1]
+        }
 
         # version
-        match($0, /\(v[0-9.]+\)/)
-        ver=substr($0, RSTART+1, RLENGTH-2)
+        ver=""
+        if (match($0, /\(v[0-9.]+\)/)) {
+            ver=substr($0, RSTART+2, RLENGTH-3)
+        }
 
-        # server/port & sid
-        match($0, /\(([a-zA-Z0-9._-]+)\/([0-9]+) *([0-9]+)\)/, m)
-        licserver=m[1]
-        port=m[2]
-        sid=m[3]
+        # license server / port / sessionid
+        licserver=""
+        port=""
+        sid=""
+        if (match($0, /\(([a-zA-Z0-9._-]+)\/([0-9]+) *([0-9]+)\)/, m3)) {
+            licserver=m3[1]
+            port=m3[2]
+            sid=m3[3]
+        }
 
         # start time
-        match($0, /start .*/, m2)
-        start=m2[0]
-        sub("start ", "", start)
+        start=""
+        if (match($0, /start .*/, m4)) {
+            start=m4[0]
+            sub("start ", "", start)
+        }
 
-        printf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
-               feature, user, host, display, ver, licserver, port, sessionid, start, expiry)
+        print feature,user,host,ver,licserver,port,sid,start,expiry
     }
 }
 ' "$logfile"

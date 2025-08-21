@@ -1,0 +1,60 @@
+#!/bin/bash
+logfile="$1"
+
+awk '
+BEGIN { 
+    print "BEGIN TRANSACTION;"
+    in_floating=0
+}
+
+/^Users of / {
+    match($0, /^Users of (.+):/, f)
+    feature=f[1]
+    expiry=""
+    in_floating=0     # 每个 Feature 开始时重置
+}
+
+/^  "[^"]+"/ {
+    if ($0 ~ /floating license/) {
+        in_floating=1   # floating license 出现后，下一行开始才是用户行
+    } else if ($0 !~ /floating license/) {
+        match($0, /expiry:[ \t]*([0-9a-zA-Z-]+)/, m)
+        if (m[1] != "") expiry=m[1]
+    }
+}
+
+NF==0 || /Total of [0-9]+ licenses issued/ || /queued/ { next }
+
+# 只有在 floating license 后才解析用户行
+in_floating && /^\s*[a-zA-Z0-9]/ {
+    if ($0 !~ /Display/) {
+        line=$0
+        match(line, /^[ \t]*([^\t ,]+)/, m); user=m[1]
+        sub(/^[ \t]*[^\t ,]+[ \t]+/, "", line)
+
+        host=""; if (match(line, /^([^\t ()]+)/, m2)) host=m2[1]
+        ver=""; if (match($0, /\(v[0-9.]+\)/)) ver=substr($0,RSTART+2,RLENGTH-3)
+        licserver=""; port=""; sid=""
+        if (match($0, /\(([a-zA-Z0-9._-]+)\/([0-9]+) *([0-9]+)\)/, m3)) {
+            licserver=m3[1]; port=m3[2]; sid=m3[3]
+        }
+
+        start=""; if (match($0,/start .*/)) { start=substr($0,RSTART+6,RLENGTH-6); gsub(/, [0-9]+ licenses$/,"",start) }
+
+        # SQL 单引号转义
+        gsub("\x27","\x27\x27",feature)
+        gsub("\x27","\x27\x27",user)
+        gsub("\x27","\x27\x27",host)
+        gsub("\x27","\x27\x27",ver)
+        gsub("\x27","\x27\x27",licserver)
+        gsub("\x27","\x27\x27",sid)
+        gsub("\x27","\x27\x27",start)
+        gsub("\x27","\x27\x27",expiry)
+
+        if(user!="" && start!="")
+            printf "INSERT INTO license_usage (Feature, User, Host, Version, LicServer, Port, SessionID, StartTime, Expiry) VALUES (\x27%s\x27,\x27%s\x27,\x27%s\x27,\x27%s\x27,\x27%s\x27,\x27%s\x27,\x27%s\x27,\x27%s\x27,\x27%s\x27);\n", feature,user,host,ver,licserver,port,sid,start,expiry
+    }
+}
+
+END { print "COMMIT;" }
+' "$logfile"

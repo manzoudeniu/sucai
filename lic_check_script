@@ -1,53 +1,57 @@
 #!/bin/bash
 # 用法: ./parse_lmstat.sh lmstat.log
-# 输出 CSV: Feature,User,Host,IP,Version,LicServer,Port,SessionID,StartTime,Expiry
+# 输出 CSV，不包含 "floating license" 行
 
 logfile="$1"
 
 awk '
 BEGIN {
-    print "Feature,User,Host,IP,Version,LicServer,Port,SessionID,StartTime,Expiry"
+    print "Feature,User,Host,Display,Version,LicServer,Port,SessionID,StartTime,Expiry"
 }
 
+# 捕获 Feature 名
 /^Users of / {
     feature=$3
     sub(":", "", feature)
-    expiry=""   # 初始化
+    expiry=""
 }
 
+# 捕获 expiry 信息
 /^  "[^"]+"/ {
-    # 抓 expiry 信息
-    match($0, /expiry:[ \t]*([0-9a-zA-Z-]+)/i, m)
-    if (m[1] != "") {
-        expiry=m[1]
+    # 排除 floating license 行
+    if ($0 !~ /floating license/) {
+        match($0, /expiry:[ \t]*([0-9a-zA-Z-]+)/, m)
+        if (m[1] != "") {
+            expiry=m[1]
+        }
     }
 }
 
-/^[ \t]+[a-zA-Z0-9._-]+ / {
-    # 用户行
-    user=$1
-    host=$2
-    ip=$3
-    ver=$4
-    serv=$5
-    start=$7" "$8" "$9
+# 捕获用户行（排除 "floating license"）
+/^[ \t]+[a-zA-Z0-9._-]+[ \t]+[a-zA-Z0-9._-]+[ \t]+[a-zA-Z0-9.:_-]+[ \t]+[a-zA-Z0-9._-]+[ \t]*\(/ {
+    if ($0 !~ /floating license/) {
+        user=$1
+        host=$2
+        display=$3
+        sessionid=$4
 
-    gsub("[()]", "", ip)
-    gsub("[()]", "", ver)
-    gsub("[()]", "", serv)
+        # version
+        match($0, /\(v[0-9.]+\)/)
+        ver=substr($0, RSTART+1, RLENGTH-2)
 
-    # 处理 ip:port 格式
-    split(ip, arr, ":")
-    ipaddr=arr[1]
+        # server/port & sid
+        match($0, /\(([a-zA-Z0-9._-]+)\/([0-9]+) *([0-9]+)\)/, m)
+        licserver=m[1]
+        port=m[2]
+        sid=m[3]
 
-    # server 部分 server/port sessionid
-    split(serv, arr2, "/")
-    licserver=arr2[1]
-    split(arr2[2], arr3, " ")
-    port=arr3[1]
-    sessionid=arr3[2]
+        # start time
+        match($0, /start .*/, m2)
+        start=m2[0]
+        sub("start ", "", start)
 
-    printf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
-           feature, user, host, ipaddr, ver, licserver, port, sessionid, start, expiry)
+        printf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+               feature, user, host, display, ver, licserver, port, sessionid, start, expiry)
+    }
 }
 ' "$logfile"

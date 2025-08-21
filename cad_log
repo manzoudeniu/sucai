@@ -1,0 +1,647 @@
+lmstat - Copyright (c) 1989-2016 Flexera Software LLC. All Rights Reserved.
+Flexible License Manager status on Thu 8/21/2025 18:23
+
+License server status: 5280@lic23
+    License file(s) on lic23: /home/lmadmin/dat/cadence.lic23:
+
+     lic23: license server UP (MASTER) v11.19.1
+
+Vendor daemon status (on lic23):
+
+    cdslmd: UP v11.19.1
+Feature usage info:
+
+Users of 111:  (Total of 420 licenses issued;  Total of 4 licenses in use)
+
+  "111" v25.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: UHD:PERM
+  floating license
+
+    jameshsu24 dfm02 :38.0 (v6.170) (lic23/5280 9021), start Mon 8/11 14:44
+    sophieshih dfm02 :9.0 (v6.170) (lic23/5280 6064), start Mon 8/11 14:37
+    kevin dfm02 :15.0 (v6.170) (lic23/5280 7415), start Thu 8/14 13:59
+    chinisu dfm02 :36.0 (v6.170) (lic23/5280 5148), start Thu 8/21 17:30
+
+Users of 12141:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of 206:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of 21060:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of 21400:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of 276:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of 32150:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of 32760:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of 32_28nm_to_10nm:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of 940:  (Total of 70 licenses issued;  Total of 0 licenses in use)
+
+Users of 945:  (Total of 70 licenses issued;  Total of 0 licenses in use)
+
+Users of AMS_Designer_Link:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of AMS_environment:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of AMS_utilities:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of AdvPI_20_SystemPI_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Adv_IBIS_Mod_20:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Adv_IBIS_Modeling:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of AdvancedPI:  (Total of 35 licenses issued;  Total of 1 license in use)
+
+  "AdvancedPI" v2024.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    pcbb2 szs-pcb-pcbb6 none (v2023.100) (lic23/5280 1575), start Mon 8/11 11:55
+
+Users of AdvancedPI_TI_20:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of AdvancedSI:  (Total of 35 licenses issued;  Total of 7 licenses in use)
+
+  "AdvancedSI" v2024.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    ibisb4 edatest :1 (v2018.000) (lic23/5280 7205), start Mon 8/11 10:07
+    ibisb4 as7hp32 :1 (v2018.000) (lic23/5280 5668), start Mon 8/11 10:07
+    simmodel as7hp5 192.168.173.77:0.0 (v2018.000) (lic23/5280 2375), start Mon 8/11 13:59
+    ibisb4 edatest :1 (v2018.000) (lic23/5280 585), start Tue 8/12 13:18
+    simmodel as7hp34 192.168.173.77:0.0 (v2018.000) (lic23/5280 5988), start Tue 8/12 18:16
+    ibisb4 edatest :1 (v2018.000) (lic23/5280 4668), start Sat 8/16 15:58
+    ibisb2 as7hp5 192.168.173.120:0.0 (v2018.000) (lic23/5280 10358), start Thu 8/21 9:20
+
+Users of AdvancedSI_20:  (Total of 35 licenses issued;  Total of 7 licenses in use)
+
+  "AdvancedSI_20" v2024.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    ibisb4 edatest :1 (v2018.000) (lic23/5280 5559), start Mon 8/11 10:06
+    ibisb4 as7hp32 :1 (v2018.000) (lic23/5280 9302), start Mon 8/11 10:07
+    simmodel as7hp5 192.168.173.77:0.0 (v2018.000) (lic23/5280 8082), start Mon 8/11 13:59
+    ibisb4 edatest :1 (v2018.000) (lic23/5280 8301), start Tue 8/12 13:18
+    simmodel as7hp34 192.168.173.77:0.0 (v2018.000) (lic23/5280 3012), start Tue 8/12 18:16
+    ibisb4 edatest :1 (v2018.000) (lic23/5280 8871), start Sat 8/16 15:58
+    ibisb2 as7hp5 192.168.173.120:0.0 (v2018.000) (lic23/5280 4587), start Thu 8/21 9:20
+
+Users of Advanced_Package_Designer:  (Total of 35 licenses issued;  Total of 1 license in use)
+
+  "Advanced_Package_Designer" v24.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    pcbb7 szs-pcb-pcbb7 none (v22.100) (lic23/5280 6844), start Thu 8/14 13:25
+
+Users of Affirma_sim_analysis_env:  (Total of 280 licenses issued;  Total of 0 licenses in use)
+
+Users of Allegro_Adv_Packaging_Plus:  (Total of 35 licenses issued;  Total of 1 license in use)
+
+  "Allegro_Adv_Packaging_Plus" v24.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    pcbb7 szs-pcb-pcbb7 none (v22.100) (lic23/5280 9587), start Thu 8/14 13:25
+
+Users of Allegro_PCB_DFM_Checker:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Allegro_PCB_Harmony_Option:  (Total of 35 licenses issued;  Total of 7 licenses in use)
+
+  "Allegro_PCB_Harmony_Option" v24.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    pcbb3 szs-pcb-pcb3-2 0:0 (v24.100) (lic23/5280 4886), start Mon 8/18 9:17
+    pcbb3 szs-pcb-pcb3 0:0 (v23.100) (lic23/5280 1057), start Mon 8/18 9:40
+    pcbb1 szs-pcb-pcbb6 none (v22.100) (lic23/5280 2207), start Mon 8/18 10:16
+    pcbb3 szs-pcb-pcb3 0:0 (v23.100) (lic23/5280 10230), start Tue 8/19 12:00
+    pcbb1 szs-pcb-pcb1 0:0 (v23.100) (lic23/5280 12860), start Thu 8/21 15:21
+    pcbb2 szs-pcb-pcbb2 none (v22.100) (lic23/5280 4421), start Thu 8/21 15:37
+    pcbb2 IoT-SolidWorks 0:0 (v23.100) (lic23/5280 7783), start Thu 8/21 17:30
+
+Users of Allegro_PCB_Manufacturing:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Allegro_PCB_Productivity_TB:  (Total of 35 licenses issued;  Total of 7 licenses in use)
+
+  "Allegro_PCB_Productivity_TB" v24.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    pcbb3 szs-pcb-pcb3-2 0:0 (v24.100) (lic23/5280 7985), start Mon 8/18 9:17
+    pcbb3 szs-pcb-pcb3 0:0 (v23.100) (lic23/5280 314), start Mon 8/18 9:40
+    pcbb1 szs-pcb-pcbb6 none (v22.100) (lic23/5280 7543), start Mon 8/18 10:17
+    pcbb3 szs-pcb-pcb3 0:0 (v23.100) (lic23/5280 4213), start Tue 8/19 12:00
+    pcbb1 szs-pcb-pcb1 0:0 (v23.100) (lic23/5280 10703), start Thu 8/21 15:22
+    pcbb2 szs-pcb-pcbb2 none (v22.100) (lic23/5280 9866), start Thu 8/21 15:37
+    pcbb2 IoT-SolidWorks 0:0 (v23.100) (lic23/5280 9210), start Thu 8/21 17:30
+
+Users of Allegro_PCB_Router_610:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Allegro_Venture_PCB_Designer:  (Total of 35 licenses issued;  Total of 7 licenses in use)
+
+  "Allegro_Venture_PCB_Designer" v24.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    pcbb3 szs-pcb-pcb3-2 0:0 (v24.100) (lic23/5280 8928), start Mon 8/18 9:16
+    pcbb3 szs-pcb-pcb3 0:0 (v23.100) (lic23/5280 6508), start Mon 8/18 9:40
+    pcbb1 szs-pcb-pcbb6 none (v22.100) (lic23/5280 8754), start Mon 8/18 10:16
+    pcbb3 szs-pcb-pcb3 0:0 (v23.100) (lic23/5280 4982), start Tue 8/19 12:00
+    pcbb1 szs-pcb-pcb1 0:0 (v23.100) (lic23/5280 5376), start Thu 8/21 15:21
+    pcbb2 szs-pcb-pcbb2 none (v22.100) (lic23/5280 3679), start Thu 8/21 15:36
+    pcbb2 IoT-SolidWorks 0:0 (v23.100) (lic23/5280 2718), start Thu 8/21 17:30
+
+Users of Allegro_Venture_SDA:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Allegro_Viewer_Plus:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Allegro_studio:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Aurora:  (Total of 35 licenses issued;  Total of 2 licenses in use)
+
+  "Aurora" v2024.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    ibisb4 as7hp32 :1 (v2018.000) (lic23/5280 1303), start Mon 8/11 10:05
+    ibisb4 edatest :1 (v2018.000) (lic23/5280 9951), start Mon 8/11 10:07
+
+Users of Aurora_20:  (Total of 35 licenses issued;  Total of 2 licenses in use)
+
+  "Aurora_20" v2024.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    ibisb4 as7hp32 :1 (v2018.000) (lic23/5280 8600), start Mon 8/11 10:05
+    ibisb4 edatest :1 (v2018.000) (lic23/5280 5823), start Mon 8/11 10:07
+
+Users of Base_Verilog_Lib:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of CCD_Multi_Constraint_Check:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of CDNS_ESW_DBG:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Cadence_3D_Design_Viewer:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Cadence_Analytics_Developer:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Cadence_Analytics_Streaming:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Cadence_Framework_Runtime:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Celsius_CFD_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Celsius_Thermal:  (Total of 35 licenses issued;  Total of 2 licenses in use)
+
+  "Celsius_Thermal" v2024.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    pcbb2 szs-pcb-pcbb2 none (v2023.100) (lic23/5280 279), start Thu 8/21 15:35
+    pcbb2 szs-pcb-pcbb2 none (v2023.100) (lic23/5280 2535), start Thu 8/21 15:41
+
+Users of Celsius_ThermalG:  (Total of 35 licenses issued;  Total of 2 licenses in use)
+
+  "Celsius_ThermalG" v2024.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    pcbb2 szs-pcb-pcbb2 none (v2023.100) (lic23/5280 11722), start Thu 8/21 15:34
+    pcbb2 szs-pcb-pcbb2 none (v2023.100) (lic23/5280 6447), start Thu 8/21 15:34
+
+Users of Clarity_3DSolver:  (Total of 35 licenses issued;  Total of 3 licenses in use)
+
+  "Clarity_3DSolver" v2024.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    ibisb4 as7hp32 :1 (v2024.000) (lic23/5280 11209), start Thu 8/14 18:05
+    ibisb4 edatest :1 (v2024.000) (lic23/5280 7630), start Wed 8/20 12:43
+    ibisb4 as7hp32 :1 (v2024.000) (lic23/5280 11660), start Thu 8/21 12:17
+
+Users of Clarity_3DSolverG:  (Total of 35 licenses issued;  Total of 3 licenses in use)
+
+  "Clarity_3DSolverG" v2024.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    ibisb4 edatest :1 (v2024.000) (lic23/5280 950), start Mon 8/11 14:22
+    ibisb4 as7hp32 :1 (v2024.000) (lic23/5280 8553), start Thu 8/14 13:49
+    ibisb4 as7hp32 :1 (v2024.000) (lic23/5280 8100), start Thu 8/14 17:18
+
+Users of Clarity_FDTD:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Clarity_FDTD_G:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Conformal_Asic:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Conformal_Cnstrnt_Dsgnr_L_LL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Conformal_Cnstrnt_Dsgnr_XL_LXL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Conformal_Custom:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Conformal_ECO_GXL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Conformal_Low_Power:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Conformal_Low_Power_GXL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Conformal_Ultra:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of DFM_Core_Technology:  (Total of 70 licenses issued;  Total of 0 licenses in use)
+
+Users of Encounter_C:  (Total of 70 licenses issued;  Total of 0 licenses in use)
+
+Users of Extended_Verilog_Lib:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Genus_CPU_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Genus_Low_Power_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Genus_Physical_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Genus_Synthesis:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Helium_Base_Lib:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Helium_Build_Batch:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Helium_Build_GUI:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Helium_SWD_GUI:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Helium_SW_Debug:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Helium_System_Debug:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Helium_Virtual_Runtime:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of ICP_Extract_20:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Indago_ESW_DBG:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_20nm_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_7nm_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_C:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_CPU_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_DFM:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_GigaPlace_GXL_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_GigaPlace_XL_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_Hier_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_Impl_System:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_MS_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_PI_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Innovus_hfr_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Integrated_Metrics_Center:  (Total of 70 licenses issued;  Total of 0 licenses in use)
+
+Users of Interposer_Extract_20:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Joules_RTL_Power:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of LEAPFROG-CV:  (Total of 105 licenses issued;  Total of 0 licenses in use)
+
+Users of Liberate_Client:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Liberate_LV_Client:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Liberate_LV_Server:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Liberate_Server:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Litho_DP_Client:  (Total of 595 licenses issued;  Total of 0 licenses in use)
+
+Users of Litho_Electrical_Analyzer:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Litho_Hotspot_Fixing:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Litho_Physical_Analyzer:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of MP_HPC_Token_V8:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of MTI_Opt_Incisive_Specman_Sim:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of MWO_010:  (Total of 70 licenses issued;  Total of 0 licenses in use)
+
+Users of Modus_DFT_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Modus_Hierarchical_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Modus_common_ui:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of OASIS_RFDE:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of OASIS_Simulation_Interface:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of OrbitIO_Sys_PlanC:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of PAS_ErrorCell_Generator:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of PAS_Graphical_Tech_Editor:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of PAS_Pcell_Generator:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of PCB_Extract_20:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of PCB_design_studio:  (Total of 35 licenses issued;  Total of 7 licenses in use)
+
+  "PCB_design_studio" v24.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: UHD:PERM
+  floating license
+
+    pcbb3 szs-pcb-pcb3-2 0:0 (v24.100) (lic23/5280 12615), start Mon 8/18 9:17
+    pcbb3 szs-pcb-pcb3 0:0 (v23.100) (lic23/5280 1140), start Mon 8/18 9:40
+    pcbb1 szs-pcb-pcbb6 none (v22.100) (lic23/5280 5782), start Mon 8/18 10:16
+    pcbb1 szs-pcb-pcbb1-2 0:0 (v23.100) (lic23/5280 10468), start Mon 8/18 13:36
+    pcbb2 szs-pcb-pcbb2 none (v22.100) (lic23/5280 9783), start Thu 8/21 15:37
+    pcbb1 szs-pcb-pcb1 0:0 (v23.100) (lic23/5280 6735), start Thu 8/21 15:21
+    pcbb2 IoT-SolidWorks 0:0 (v23.100) (lic23/5280 3208), start Thu 8/21 17:30
+
+Users of PCB_librarian_expert:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of PSpiceStudio:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_16nm:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_DRC:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_DesignReview:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_DesignReview_Layout:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_DesignReview_Mask:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_LVS:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_Quickview:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_RV:  (Total of 175 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_UI:  (Total of 175 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_advdrc:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_advlvs:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_dfmfill:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_int:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_mpt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Pegasus_perc:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of PowerSI:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of PowerSI_II:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QRCX_Display_Technology_Option:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QRC_Advanced_Analysis:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QRC_Advanced_Modeling:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QRC_Advanced_Modeling_20:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QRC_Advanced_Node_Modeling:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_CH_SL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_GDSII:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_GL1:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_HITACHI:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_JEOL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_LAFF:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_MEBES:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_OA:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_OASIS:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_SemiP10:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of QuickView_TOSHIBA:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of RELXPERT:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of SIP_WLCSP:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of SLNK:  (Total of 525 licenses issued;  Total of 0 licenses in use)
+
+Users of SiP_Layout_Option:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Spectre_AMSD_Lk:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Spectre_AMS_MMSIM_Lk:  (Total of 210 licenses issued;  Total of 0 licenses in use)
+
+Users of Spectre_Interactive_mode:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Spectre_XPS:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Spectre_X_MMSIM_Lk:  (Total of 210 licenses issued;  Total of 0 licenses in use)
+
+Users of Spectre_char_opt:  (Total of 350 licenses issued;  Total of 0 licenses in use)
+
+Users of SpeedEMe:  (Total of 70 licenses issued;  Total of 0 licenses in use)
+
+Users of SpeedEMg:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Stratus_FloatingPoint:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Stratus_HLS_L:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Stratus_HLS_XL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Stratus_IDE:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Tempus_Timing_Signoff_L:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Tempus_Timing_Signoff_MP:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Tempus_Timing_Signoff_PI_opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Tempus_Timing_Signoff_TSO:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Tempus_Timing_Signoff_XL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS_Opt_Incisive_Specman_Sim:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of VIRTUOSO_POWER_MANAGER:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_ADE_Assembler:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_ADE_Explorer:  (Total of 35 licenses issued;  Total of 1 license in use)
+
+  "Virtuoso_ADE_Explorer" v25.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: UHD:PERM
+  floating license
+
+    jameshsu24 dfm02 :38.0 (v6.170) (lic23/5280 12201), start Thu 8/14 11:08
+
+Users of Virtuoso_ADE_Verifier:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_APS_MMSIM_Lk:  (Total of 210 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Adv_Node_Framework:  (Total of 315 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Adv_Node_Opt_Lay_Std:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Adv_Node_Opt_Layout:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_CFDE_Opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_DFM_option:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Digital_Implem:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Layout_Suite_EAD:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Layout_Suite_EXL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Layout_Suite_GXL:  (Total of 420 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_MMSIM_CPU_Accelerator:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_MMSIM_pwr_opt:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_MultiTech_Framework:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Multi_mode_Simulation:  (Total of 210 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Photonics_Option:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_QRC_Extraction_XL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_RF_Platform:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Schematic_Editor_XL:  (Total of 35 licenses issued;  Total of 1 license in use)
+
+  "Virtuoso_Schematic_Editor_XL" v25.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: UHD:PERM
+  floating license
+
+    jameshsu24 dfm02 :38.0 (v6.170) (lic23/5280 9655), start Tue 8/12 14:34
+
+Users of Virtuoso_Spectre:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Spectre_GXL_MMSIM_Lk:  (Total of 210 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Variation_Analysis_Op:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Variation_Option:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Virtuoso_Visual_Analysis_XL:  (Total of 35 licenses issued;  Total of 1 license in use)
+
+  "Virtuoso_Visual_Analysis_XL" v25.1, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: UHD:PERM
+  floating license
+
+    kevin dfm02 :15.0 (v6.170) (lic23/5280 12401), start Thu 8/14 13:59
+
+Users of Virtuoso_XPS_MMSIM_Lk:  (Total of 210 licenses issued;  Total of 0 licenses in use)
+
+Users of Voltus_Power_Integrity_AA:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Voltus_Power_Integrity_ESD:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Voltus_Power_Integrity_Fi_AA:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Voltus_Power_Integrity_Fi_XL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Voltus_Power_Integrity_MP:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Voltus_Power_Integrity_XL:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Xcelium_SC_DMS_Option:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Xcelium_Safety_Sim:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of Xcelium_Single_Core:  (Total of 35 licenses issued;  Total of 5 licenses in use)
+
+  "Xcelium_Single_Core" v25.0, vendor: cdslmd, expiry: 14-jul-2026
+  vendor_string: J:PERM
+  floating license
+
+    6803b13 as5hp31 unix:0 (v16.000) (lic23/5280 11145), start Wed 8/20 13:36
+    6803b13 as5hp42 unix:0 (v16.000) (lic23/5280 2039), start Wed 8/20 13:38
+    6803b13 as5hp31 unix:0 (v16.000) (lic23/5280 12572), start Wed 8/20 14:50
+    6803b13 as5hp31 unix:0 (v16.000) (lic23/5280 671), start Wed 8/20 14:50
+    6803b13 as5hp31 unix:0 (v16.000) (lic23/5280 1289), start Thu 8/21 16:41
+
+Users of adv_package_designer_expert:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of dfsverifault:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of expgen:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_advp:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_dao:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_fao:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_fst:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_interactive:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_lint:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_papp:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_pcov:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_pint:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_unr:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of jasper_vao:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of modus_atpg:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of modus_atpg_mcpu:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of pcomp:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of plotVersa:  (Total of 105 licenses issued;  Total of 0 licenses in use)
+
+Users of skillDev:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of tempus_advanced_analysis:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of verifault:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of verisium_debug:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of virtuoso_vale_framework:  (Total of 1400 licenses issued;  Total of 0 licenses in use)
+
+Users of vmanager_client:  (Total of 175 licenses issued;  Total of 0 licenses in use)
+
+Users of vmanager_project:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+Users of vmanager_safety_client:  (Total of 35 licenses issued;  Total of 0 licenses in use)
+
+

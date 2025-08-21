@@ -1,0 +1,175 @@
+lmstat - Copyright (c) 1989-2016 Flexera Software LLC. All Rights Reserved.
+Flexible License Manager status on Thu 8/7/2025 15:39
+
+License server status: 1717@lic23
+    License file(s) on lic23: /home/lmadmin/dat/mentor.lic23:
+
+     lic23: license server UP (MASTER) v11.19.4
+
+Vendor daemon status (on lic23):
+
+     saltd: UP v11.19.4
+Feature usage info:
+
+     mgcld: UP v11.19.4
+Feature usage info:
+
+Users of caldesignrev:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of caldfmproperty:  (Total of 2 licenses issued;  Total of 0 licenses in use)
+
+Users of calibreadp:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of calibreintrtl_s:  (Total of 5 licenses issued;  Total of 0 licenses in use)
+
+Users of calibreperc:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of calibrepvs_s:  (Total of 5 licenses issued;  Total of 1 license in use)
+
+  "calibrepvs_s" v2026.080, vendor: mgcld, expiry: 30-aug-2026
+  vendor_string: EC9BF57A
+  floating license
+
+    vanniegu a5fbg194 192.168.173.23:022929_1 (v2009.04) (lic23/1717 4585), start Thu 8/7 14:58
+
+Users of calibreqdb:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of calibrexrc:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of calibrexrctoxact:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of calinteractive:  (Total of 6 licenses issued;  Total of 5 licenses in use)
+
+  "calinteractive" v2026.080, vendor: mgcld, expiry: 30-aug-2026
+  vendor_string: 1131FB1A
+  floating license
+
+    tilliedong a5fbg194 192.168.173.158:05735_1 (v2009.04) (lic23/1717 10201), start Wed 8/6 9:53
+    tilliedong a5fbg194 192.168.173.158:01974_1 (v2009.04) (lic23/1717 9440), start Thu 8/7 10:27
+    tilliedong a5fbg194 192.168.173.158:02421_1 (v2009.04) (lic23/1717 6248), start Thu 8/7 10:34
+    vanniegu a5fbg194 192.168.173.23:011301_1 (v2009.04) (lic23/1717 4220), start Thu 8/7 11:38
+    sallyshen a5fbg194 192.168.173.58:023294_1 (v2009.04) (lic23/1717 10540), start Thu 8/7 15:16
+
+Users of calrealtime:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of calyieldanalyze:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of calyieldenhance:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of calyieldserver:  (Total of 2 licenses issued;  Total of 0 licenses in use)
+
+Users of dftadvisor:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of msimcdebug:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of msimcompare:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of msimcoverage:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of msimdataflow:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of msimhdlmix:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of msimhdlsim:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of msimprofile:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of msimreguvm:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of msimsystemc:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of msimviewer:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of mtiverification:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of qdbgadvanced:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of qdbgcovdebug:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of qdbgcoverage:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of qdbguvmsvtx:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of qdebug:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of qvman:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of qvrm:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of qxprop:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of svrnm:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of svverification:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of svwreal:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of txanalysis:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of verifdataport:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of xcalibrate:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of zncwmbase:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of edxpublsh:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of edxverify:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of edxwrtrdr:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of ezwforhlynx:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of lpepads:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of m3dpdfoutput:  (Total of 3 licenses issued;  Total of 1 license in use)
+
+  "m3dpdfoutput" v2024.08, vendor: mgcld, expiry: 03-nov-2029
+  vendor_string: 2DF7E71B
+  floating license
+
+    pcbb3 szs-pcb-pcb3 szs-pcb-pcb3 (v2023.02) (lic23/1717 4602), start Wed 8/6 10:55
+
+Users of m3dplugin:  (Total of 3 licenses issued;  Total of 1 license in use)
+
+  "m3dplugin" v2024.08, vendor: mgcld, expiry: 03-nov-2029
+  vendor_string: 56F75724
+  floating license
+
+    pcbb3 szs-pcb-pcb3 szs-pcb-pcb3 (v2023.02) (lic23/1717 4702), start Wed 8/6 10:55
+
+Users of padsamssv_c:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of padslogic:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of padsstdplus_c:  (Total of 3 licenses issued;  Total of 1 license in use)
+
+  "padsstdplus_c" v2024.08, vendor: mgcld, expiry: 03-nov-2029
+  vendor_string: 66FF0CD0
+  floating license
+
+    pcbb3 szs-pcb-pcb3 szs-pcb-pcb3 (v2023.02) (lic23/1717 8120), start Wed 8/6 10:47
+
+Users of ploglibedit:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of plogpadspcb:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of plogpdf:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of plogschedit:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of plogshell:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of pmcadcollab:  (Total of 3 licenses issued;  Total of 1 license in use)
+
+  "pmcadcollab" v2024.08, vendor: mgcld, expiry: 03-nov-2029
+  vendor_string: 66A0E253
+  floating license
+
+    pcbb3 szs-pcb-pcb3 szs-pcb-pcb3 (v2023.02) (lic23/1717 5203), start Wed 8/6 10:54
+
+Users of spiceint:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+Users of visedatapads:  (Total of 3 licenses issued;  Total of 0 licenses in use)
+
+

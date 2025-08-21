@@ -1,0 +1,1160 @@
+lmstat - Copyright (c) 1989-2016 Flexera Software LLC. All Rights Reserved.
+Flexible License Manager status on Thu 8/21/2025 17:09
+
+License server status: 2700@lic23
+    License file(s) on lic23: /home/lmadmin/dat/synopsys.lic23:
+
+     lic23: license server UP (MASTER) v11.19.6
+
+Vendor daemon status (on lic23):
+
+   snpslmd: UP v11.19.6
+Feature usage info:
+
+Users of SSS:  (Total of 1 license issued;  Total of 0 licenses in use)
+
+Users of 3DIC-Compiler:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of 3DIC-Compiler-expl:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of 3DIC-Compiler-impl-25D:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of 3DIC-dme:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of ACS:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of BOA-BRT:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of CTV-Interface:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of CustomInfrastructure:  (Total of 20 licenses issued;  Total of 20 licenses in use)
+
+  "CustomInfrastructure" v2023.12, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S
+  floating license
+
+    6803b6 as7hp47 (v2022.09) (lic23/2700 6359), start Mon 8/11 10:32
+    6336b3 as7hp47 (v2022.09) (lic23/2700 6905), start Mon 8/11 10:34
+    edenwu as7hp5 (v2022.09) (lic23/2700 6744), start Mon 8/11 10:41
+    6801b21 as7hp5 (v2022.09) (lic23/2700 3978), start Wed 8/13 8:49
+    6805ac as7hp5 (v2022.09) (lic23/2700 1350), start Wed 8/13 9:49
+    6340b4 as7hp47 (v2022.09) (lic23/2700 2624), start Wed 8/13 10:27
+    6805aa as7hp5 (v2022.09) (lic23/2700 5454), start Wed 8/13 10:33
+    6340b6 as7hp47 (v2022.09) (lic23/2700 4729), start Wed 8/13 10:43
+    6805ar as7hp5 (v2022.09) (lic23/2700 2708), start Wed 8/13 15:29
+    6336b14 as7hp5 (v2022.09) (lic23/2700 3821), start Fri 8/15 10:14
+    6336b8 as7hp34 (v2022.09) (lic23/2700 11956), start Fri 8/15 10:28
+    raeyang as7hp34 (v2022.09) (lic23/2700 10355), start Fri 8/15 10:47
+    kzhou as7hp47 (v2022.09) (lic23/2700 7199), start Tue 8/19 15:49
+    6805ag as7hp47 (v2022.09) (lic23/2700 12337), start Wed 8/20 9:06
+    6805ad as7hp5 (v2022.09) (lic23/2700 5199), start Wed 8/20 10:10
+    6800b18 as7hp47 (v2022.09) (lic23/2700 809), start Wed 8/20 11:21
+    6803b13 as7hp5 (v2022.09) (lic23/2700 2857), start Wed 8/20 13:21
+    6800b13 as7hp47 (v2022.09) (lic23/2700 6036), start Wed 8/20 16:42
+    6806b11 as7hp5 (v2022.09) (lic23/2700 15372), start Thu 8/21 9:28
+    6805ak as7hp5 (v2022.09) (lic23/2700 13394), start Thu 8/21 11:53
+
+Users of DC-Expert:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of DC-Extension:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of DC-Graphical:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of DC-SDF-Interface:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of DC-Ultra-Features:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of DC-Ultra-Opt:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of DW-Developer:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of DW-IP-Consultant:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of DW-IP-Developer:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Design-Budgeting:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Design-Compiler:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Design-Compiler-NXT:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Design-Vision:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of DesignWare:  (Total of 90 licenses issued;  Total of 0 licenses in use)
+
+Users of DesignWare-LP:  (Total of 70 licenses issued;  Total of 0 licenses in use)
+
+Users of DesignWare-VERA:  (Total of 70 licenses issued;  Total of 0 licenses in use)
+
+Users of Designware-Basic:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Digital-AF:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Digital-NX-AGP:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of Euclide-2-Elite-Pkg:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of FAS-CKTCHECK:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of FAS-COSIM:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Formality:  (Total of 20 licenses issued;  Total of 1 license in use)
+
+  "Formality" v2023.12, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S
+  floating license
+
+    6339c10 h3pc54 localhost:20.0 J3_11ac36c1_7576_1 (v2019.06) (lic23/2700 7029), start Thu 8/21 13:52
+
+Users of Formality-Advanced:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Formality-DPX:  (Total of 20 licenses issued;  Total of 1 license in use)
+
+  "Formality-DPX" v2023.12, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S
+  floating license
+
+    6339c10 h3pc54 localhost:20.0 J3_11ac36c1_7576_1 (v2019.06) (lic23/2700 1055), start Thu 8/21 13:53
+
+Users of Formality-E1:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Formality-FuSa:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Formality-LP:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Formality-LogicECO:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Formality-Ultra:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Fusion-Compiler-BE-NX:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Fusion-Compiler-BE-NX-AGP:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Fusion-Compiler-FE-NX:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Fusion-Compiler-FE-NX-AGP:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Fusion-Compiler-FP-NX:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Fusion-Compiler-ML:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Fusion-Compiler-NX:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of Fusion-Compiler-NX-AG:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of Fusion-Compiler-NX-AGP:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of FusionVantageLmcInterface:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Galaxy-Common:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of GalaxyConstraint:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Galil_Solver:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of HAPS-70-AMBA-XTOR-MASTER:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of HAPS-70-AMBA-XTOR-SLAVE:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of HAPS-80-AMBA-XTOR-MASTER:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of HAPS-80-AMBA-XTOR-SLAVE:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of HAPS-DX-AMBA-XTOR-MASTER:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of HAPS-DX-AMBA-XTOR-SLAVE:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of HDL:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of HDL-Compiler:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Hector:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Hector-Core:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of ICCompilerII-8:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of ICCompilerII-8-AdvGeo:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of ICCompilerII-FuSa:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of ICCompilerII-ML:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of ICCompilerII-NX:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of ICCompilerII-NX-AdvGeo:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of ICCompilerIIs-Shell:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of ICValidator-Live:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of ICValidator-Manager:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of ICValidator2-CompareEngine:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of ICValidator2-GeometryEngine:  (Total of 150 licenses issued;  Total of 0 licenses in use)
+
+Users of LMCSwift_Net:  (Total of 60 licenses issued;  Total of 0 licenses in use)
+
+Users of Laker_AdvancedNode:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Laker_Blitz:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Laker_Custom_Digital_Router:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Laker_Custom_Row_Placer:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Laker_FPD_L2:  (Total of 10 licenses issued;  Total of 3 licenses in use)
+
+  "Laker_FPD_L2" v2023.06, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S ES=LKMEJIIBPEELOLIJJJQGB8CA3AF93B0B
+  floating license
+
+    cyu as7hp47 192.168.173.18:0.0 (v2014.12) (lic23/2700 14650), start Thu 8/21 15:37
+    ibisb2 a5mxc161 192.168.173.77:0.0 (v2013.12) (lic23/2700 10215), start Thu 8/21 16:03
+    6340b4 a5mxc173 192.168.173.195:0.0 (v2013.12) (lic23/2700 13185), start Thu 8/21 16:52
+
+Users of Laker_L3_Plus:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Library-Compiler:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of MCE-Base:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of MDataPrep:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of MDynLink:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Milkyway:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Milkyway-Interface:  (Total of 120 licenses issued;  Total of 0 licenses in use)
+
+Users of NanoTime:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of NanoTime-ultra:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of PA-2-Elite-Sim-Pkg:  (Total of 100 licenses issued;  Total of 0 licenses in use)
+
+Users of PA-2-Elite-Tool-Pkg:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of PA.XRThost:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of PA.simulation:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of PA.token:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of PA.ultraLCA:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of PAXRT.primary:  (Total of 100 licenses issued;  Total of 0 licenses in use)
+
+Users of PAXRT.token:  (Total of 300 licenses issued;  Total of 0 licenses in use)
+
+Users of PP-Elite:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of PP-Model-Runtime:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of PP-RTL-Elite:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Power-Optimization:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of PowerAwareAnalysis:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeLib_ADDON_CHAR:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeLib_ADDON_CORE:  (Total of 160 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeLib_SIM_CORE:  (Total of 160 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimePower:  (Total of 60 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimePower-RTL:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimePower-RTL-DSMA:  (Total of 320 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimePower-RTL-GUI:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimePower-RTL-Logical:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimePower-RTL-Resim:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeShield:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeShield-ELT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeTime:  (Total of 40 licenses issued;  Total of 1 license in use)
+
+  "PrimeTime" v2023.12, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S
+  floating license
+
+    9m01c10 h3pc198 NoXDisplay J3_11acc6c1_5202_1 (v2020.03) (lic23/2700 11201), start Tue 8/19 10:21
+
+Users of PrimeTime-ADV:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeTime-ADV-PLUS:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeTime-APX:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeTime-ELT:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeTime-SI:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of RTL-Architect:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of RTL-Architect-Blk-Const:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of RTL-Architect-Blk-Main:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of RTL-Architect-Hier-Const:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of RTL-Architect-Hier-FP:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of RTL-Architect-Hier-Restruct:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of RTL-Power-Analysis:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of RTL2GDS-Access:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of SCL_WAN_DISABLE:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of SG-Verdi-Plugin:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of SIS_ADV:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of SIS_CHAR:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of SIS_CORE_ADV:  (Total of 160 licenses issued;  Total of 0 licenses in use)
+
+Users of SIS_FR:  (Total of 160 licenses issued;  Total of 0 licenses in use)
+
+Users of SIS_FR_CMDS:  (Total of 160 licenses issued;  Total of 0 licenses in use)
+
+Users of SIS_PrimeLib_CHAR:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of SIS_PrimeLib_CORE:  (Total of 160 licenses issued;  Total of 0 licenses in use)
+
+Users of SNPS-Assertions:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of SNPS-ML-PLATFORM:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of SNPS_INDESIGN_RH_RAIL:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2-AGP:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2-NETLIST:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2-PROBER:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2-TCAD:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2_AG3:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2_ANG_EXT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2_PARASITIC_EXPLORER:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2_ULTRAPLUS:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2_ULTRAPLUS_CUSTOM_IACT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2_ULTRAPLUS_DIGITAL:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of STAR-RC2_ULTRA_MANAGER:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of SynLib-Eval:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of SynopsysCustomSAE:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of SynopsysCustomShapes:  (Total of 10 licenses issued;  Total of 10 licenses in use)
+
+  "SynopsysCustomShapes" v2023.12, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S
+  floating license
+
+    6336b5 as7hp5 (v2022.09) (lic23/2700 4593), start Mon 8/11 10:30
+    6803b6 as7hp47 (v2022.09) (lic23/2700 5584), start Mon 8/11 10:32
+    6800b2 as7hp47 (v2022.09) (lic23/2700 6521), start Mon 8/11 10:36
+    6805ab as7hp34 (v2022.09) (lic23/2700 1872), start Wed 8/13 9:45
+    6805aa as7hp5 (v2022.09) (lic23/2700 8593), start Wed 8/13 10:33
+    6803b10 as7hp5 (v2022.09) (lic23/2700 7739), start Thu 8/14 13:08
+    6339b3 as7hp47 (v2022.09) (lic23/2700 10457), start Thu 8/14 13:53
+    6805al as7hp5 (v2022.09) (lic23/2700 798), start Tue 8/19 10:00
+    6339b2 as7hp5 (v2022.09) (lic23/2700 3700), start Wed 8/20 8:53
+    6806b11 as7hp5 (v2022.09) (lic23/2700 10022), start Thu 8/21 9:28
+
+Users of Test-ADV:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-ATPG-P4:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-ATPG-P5:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Analysis-P4:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-CTL-Model:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Compiler:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Compression-ATPG:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Compression-Synthesis:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-CompressionP3-ATPG:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-CompressionP3-Syn:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-CompressionP5-Syn:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-CompressionPlus-ATPG:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Conn:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Core-Integration:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Core-Wrapper:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-DFTC-TMAX:  (Total of 50 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Diagnosis:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Diagnosis-P4:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Diagnosis-P5:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Fault-P4:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Fault-P5:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Faultsim-P4:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-FuSa:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-FuSa-ADV:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-HSIO-Base:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-HSIO-Packets:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-IDDQ:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-IEEE-Std-1149-1:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-LBIST-Synthesis:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-LBISTP4-ATPG:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-LBISTP5-ATPG:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-LBISTP5-Syn:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-MBIST-Integration:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Physical:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Platform-Access:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Platform-MBIST:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Platform-RTL:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-RTL-Check:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-RTL-Metrics:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-RTL-Tristate:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-STDVR:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-ScanRoute:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Translate:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Translate-Base:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-VC:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of Test-Validate:  (Total of 50 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-CONSTRAINTS-BASE:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FAULT-FCC:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FAULT-FDB-RT:  (Total of 50 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-DPV-CPP11:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-DPV-HDB:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-FSV:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-FUSA:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-LP-2-Elite-Base-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-LP-2-Elite-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-SG-3-Apex-Base-Pkg:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-SG-3-Apex-Elite-Pkg:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-SG-3-Apex-Pkg:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-SMART-SEARCH:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-STATIC-COMPILE:  (Total of 50 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-STATIC-VERDI-PLUGIN:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-Z01X-FORMAL-SH:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-ZOIX-MODEL-SAFETY:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-ZOIX-NA-SAFETY:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-ZOIX-NA-SIM-FAULT-SLAVE:  (Total of 50 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-ZOIX-SIM-FAULT-SLAVE:  (Total of 50 licenses issued;  Total of 0 licenses in use)
+
+Users of VCF-2-Elite-Compile-Pkg:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VCF-2-Elite-Runtime-Pkg:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VCF-DPV-1-Base-Compile-Pkg:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VCF-DPV-1-Base-Runtime-Pkg:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VCFUSA-FCC:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VCFV-Verdi-Plugin:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of VCLP-Verdi-Plugin:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCPS-Gen:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VCPS-RT-SNPS:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-2-Elite-Base-Compile-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-2-Elite-Base-Runtime-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-2-Elite-Compile-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-2-Elite-Runtime-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-3-Apex-Base-Compile-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-3-Apex-Base-Runtime-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-3-Apex-Compile-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-3-Apex-Elite-Compile-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-3-Apex-Elite-Runtime-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-3-Apex-Runtime-Pkg:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCSAMSCompiler_Net:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCSAMSRuntime_Net:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCSPostProcDebugger_Net:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCSTools_Net:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS_UnifiedCompile:  (Total of 50 licenses issued;  Total of 0 licenses in use)
+
+Users of VERDI-APEX-AN:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VERDI-APEX-RT:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VERDI-UPFA:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VERDI_COMPILE:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VHDL-Analyzer:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VHDL-Compiler:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VHDL-Cycle-Sim:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VHDL-Elaborator:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VHDL-Event-Sim:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VHDL-Tools:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VHDL-VirSim:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VIP-AMBA-AHB-SVT:  (Total of 140 licenses issued;  Total of 0 licenses in use)
+
+Users of VIP-AMBA-APB-SVT:  (Total of 140 licenses issued;  Total of 0 licenses in use)
+
+Users of VIP-AMBA-AXI-SVT:  (Total of 140 licenses issued;  Total of 0 licenses in use)
+
+Users of VIP-I2C-SVT:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VIP-SOC-LIBRARY-SVT:  (Total of 100 licenses issued;  Total of 0 licenses in use)
+
+Users of VIP-SPI-SVT:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VIP-UART-SVT:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_Assertions:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_AssertionsRuntime:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_CPP_SOLVER:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_Coverage:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_CoverageRuntime:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_CoverageURG:  (Total of 70 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_Testbench:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_TestbenchRuntime:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_VCS_AMS_AddOnRuntime:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_VCS_AMS_CoSimRuntime:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of VT_Visual:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of Verdi-3-Apex-Pkg:  (Total of 20 licenses issued;  Total of 11 licenses in use)
+
+  "Verdi-3-Apex-Pkg" v2023.12, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S ES=ILBCOQGNHNEFGDPHGHGNB8CA3AF93B0B
+  floating license
+
+    6339b15 as6hp227 192.168.173.72:0.0 (v2023.12) (lic23/2700 3250), start Thu 8/21 15:43
+    6338b11 as7hp5 192.168.173.69:0.0 as7hp56338b1129391155 (v2023.12) (lic23/2700 10722), start Thu 8/21 15:43
+    6806b7 as7hp5 192.168.173.185:0.0 as7hp56806b761713428 (v2023.12) (lic23/2700 5793), start Thu 8/21 15:46
+    6338b10 as7hp5 192.168.173.189:0.0 as7hp56338b1096136978 (v2023.12) (lic23/2700 12577), start Thu 8/21 15:51
+    6803b13 as6hp227 192.168.173.93:0.0 (v2023.12) (lic23/2700 13964), start Thu 8/21 15:54
+    6338b9 as7hp47 192.168.173.203:0.0 as7hp476338b959260679 (v2023.12) (lic23/2700 6171), start Thu 8/21 15:57
+    6336b6 as7hp5 192.168.173.98:0.0 as7hp56336b670118866 (v2023.12) (lic23/2700 7296), start Thu 8/21 15:59
+    6800b5 as6hp227 192.168.173.144:0.0 (v2023.12) (lic23/2700 15279), start Thu 8/21 16:00
+    6336b13 as7hp47 192.168.173.15:0.0 as7hp476336b1366513859 (v2023.12) (lic23/2700 13496), start Thu 8/21 16:05
+    6803b13 as6hp227 192.168.173.129:0.0 (v2023.12) (lic23/2700 11094), start Thu 8/21 16:13
+    6800b4 as6hp227 192.168.173.74:0.0 (v2023.12) (lic23/2700 13547), start Thu 8/21 16:59
+
+Users of XVCSDebugger:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of adv_checker:  (Total of 50 licenses issued;  Total of 0 licenses in use)
+
+Users of ai_xp:  (Total of 100 licenses issued;  Total of 0 licenses in use)
+
+Users of bu_sms_um:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of builder:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of builder_parser:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of cdsaawaves:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of cgen:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of constraints_SDCgen:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of constraints_SDCmerge:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of constraints_mgmt:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of constraints_modemerge:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of constraints_soc_abstraction:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of constraintsso:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of coreAssembler:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of coreBuilder:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of coreConsultant:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of cover:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of cs2vh:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of da_shell:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of dft_dsmso:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of dft_soc_abstraction:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of dftso:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of diagnosis:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of em_apb_dsgn:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of em_ms_repair:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of em_repair:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of em_shs_dsgn:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of em_smart_bist_dsgn:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of em_smart_bist_en:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of em_sms_dsgn:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of em_unencrypted_rtl:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of encrypt:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of espcv:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of espelitecv:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of espelitesim:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of espsim:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of fullhspice:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of gds2gds:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of gdsview:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of generic:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of hspice:  (Total of 10 licenses issued;  Total of 1 license in use)
+
+  "hspice" v2023.12, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S
+  floating license
+
+    chinisu dfm02 (v2014.03) (lic23/2700 2951), start Thu 8/21 17:01
+
+Users of hspice3des:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hspice_api:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hspicecmidev:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hspicecmirt:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vdm_ethplug:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vdm_nic:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vdm_nvme:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vdm_pcie:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vhs:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vhs_enet:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vhs_i2c:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vhs_ide:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vhs_pcie:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vhs_sata:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vhs_ufs:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vhs_usb:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hw_vsa_nvme_analyzer:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hybrid_adapter:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of hybrid_addon_HAPS:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of hybrid_register_server:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of hybrid_vbox:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of iclpdlgen:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of identdebugger_prdp:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of identifyinstrumentor_encrypt:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of identinstrumentor:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of identinstrumentor_prdp:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of il2vh:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of integrator:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of lint_func:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of lint_soc_abstraction:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of manufacturing_test_algorithms:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of mc_all2m:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of mc_open_tcl:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of mc_shs:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of mc_sms:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of mc_um:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of metaencrypt3des:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of mig:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of miv:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of mpt:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of pl_um:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of planner:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of primesim:  (Total of 60 licenses issued;  Total of 36 licenses in use)
+
+  "primesim" v2023.12, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S
+  floating license
+
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_1 (v2020.06) (lic23/2700 3003), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_2 (v2020.06) (lic23/2700 11404), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_3 (v2020.06) (lic23/2700 12026), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_4 (v2020.06) (lic23/2700 3113), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_5 (v2020.06) (lic23/2700 9841), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_6 (v2020.06) (lic23/2700 7957), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_7 (v2020.06) (lic23/2700 2574), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_8 (v2020.06) (lic23/2700 7839), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_9 (v2020.06) (lic23/2700 12231), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_10 (v2020.06) (lic23/2700 459), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_11 (v2020.06) (lic23/2700 3434), start Thu 8/14 9:43
+    6803b15 as7hp36 J3_ffffffffa8c024ac_3679_PrimeSim_PRO_12 (v2020.06) (lic23/2700 13638), start Thu 8/14 9:43
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_1 (v2020.06) (lic23/2700 9792), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_2 (v2020.06) (lic23/2700 13724), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_3 (v2020.06) (lic23/2700 4447), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_4 (v2020.06) (lic23/2700 11356), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_5 (v2020.06) (lic23/2700 8850), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_6 (v2020.06) (lic23/2700 1411), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_7 (v2020.06) (lic23/2700 11846), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_8 (v2020.06) (lic23/2700 4198), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_9 (v2020.06) (lic23/2700 9421), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_10 (v2020.06) (lic23/2700 8356), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_11 (v2020.06) (lic23/2700 9914), start Thu 8/14 9:44
+    6803b15 as7hp37 J3_ffffffffa8c025ac_31878_PrimeSim_PRO_12 (v2020.06) (lic23/2700 13006), start Thu 8/14 9:44
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_1 (v2020.06) (lic23/2700 5370), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_2 (v2020.06) (lic23/2700 9217), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_3 (v2020.06) (lic23/2700 14240), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_4 (v2020.06) (lic23/2700 8255), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_5 (v2020.06) (lic23/2700 4803), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_6 (v2020.06) (lic23/2700 673), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_7 (v2020.06) (lic23/2700 8140), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_8 (v2020.06) (lic23/2700 2368), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_9 (v2020.06) (lic23/2700 9512), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_10 (v2020.06) (lic23/2700 10960), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_11 (v2020.06) (lic23/2700 10875), start Thu 8/21 10:21
+    6803b15 as7hp24 J3_ffffffffa8c018ac_20378_PrimeSim_PRO_12 (v2020.06) (lic23/2700 9084), start Thu 8/21 10:21
+
+Users of primewave:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of primewave_re:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of romtool:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sdftxt_ya:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of shs_sb:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of shs_ya:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of si_browser:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of si_debug:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of simif:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sms_dsgn:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sms_sb:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sms_ya:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmawr000s:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmawr000s_fe:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmdac000s:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmdac000s_fe:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmdrp000s:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmdrp000s_fe:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmibb000s:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmibb000s_fe:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmref000s:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmref000s_fe:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmwrp000s:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmwrp000s_fe:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmxnn000s:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnsmxnn000s_fe:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnstawc000s:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnstawc000s_fe:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnstref000s:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnstref000s_fe:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnstsrv000s:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnstsrv000s_fe:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnstssb000s:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnstssb000s_fe:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnstvic000s:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of sn6xx000vpnnstvic000s_fe:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of spice_explorer:  (Total of 30 licenses issued;  Total of 2 licenses in use)
+
+  "spice_explorer" v2023.12, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S
+  floating license
+
+    jameshsu24 dfm02 /dev/pts/39 (v2012.09) (lic23/2700 10149), start Thu 8/14 18:04
+    chinisu dfm02 /dev/pts/80 (v2012.09) (lic23/2700 3636), start Thu 8/21 13:53
+
+Users of sr2vh:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of stilgen:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of svfgen:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of sx_cdslink:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of sx_cdslink_ext:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of sx_data:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of synplify_analyst:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of synplifypremierdp:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of turbo_struct:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of txvso:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of vb2vh:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of vecgen:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of verifier:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of vig:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of virtualizer_hybrid_addon:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of vlxnx000vpnnstssb000s:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of vlxnx000vpnnstssb000s_fe:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of vmc:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of vpg:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of wafermap:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of wanr_synplify_global:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of wanr_synplifypremier_global:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of wanr_synplifypremierdp_global:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of wanr_synplifypro_global:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of wglgen:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of wglpatt:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of ya_sms_um:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of zip_EtherPlug:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of zip_SCZebuTLMAdaptor:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of zip_VirtualBox:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of zip_VirtualNVMeDevice:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VERDI-ULTRA:  (Total of 20 licenses issued;  Total of 11 licenses in use)
+
+  "VERDI-ULTRA" v2023.12, vendor: snpslmd, expiry: 24-jul-2026
+  vendor_string: ^1+S ES=ILBCOQGNHNEFGDPHGHGNB8CA3AF93B0B
+  floating license
+
+    6339b15 as6hp227 192.168.173.72:0.0 (v2017.06) (lic23/2700 1539), start Thu 8/21 15:43
+    6338b11 as7hp5 192.168.173.69:0.0 as7hp56338b1129391155 (v2017.06) (lic23/2700 9161), start Thu 8/21 15:43
+    6806b7 as7hp5 192.168.173.185:0.0 as7hp56806b761713428 (v2019.09) (lic23/2700 10539), start Thu 8/21 15:46
+    6338b10 as7hp5 192.168.173.189:0.0 as7hp56338b1096136978 (v2017.06) (lic23/2700 2196), start Thu 8/21 15:51
+    6803b13 as6hp227 192.168.173.93:0.0 (v2017.06) (lic23/2700 4930), start Thu 8/21 15:54
+    6338b9 as7hp47 192.168.173.203:0.0 as7hp476338b959260679 (v2017.06) (lic23/2700 5983), start Thu 8/21 15:57
+    6336b6 as7hp5 192.168.173.98:0.0 as7hp56336b670118866 (v2019.09) (lic23/2700 4619), start Thu 8/21 15:59
+    6800b5 as6hp227 192.168.173.144:0.0 (v2017.06) (lic23/2700 12682), start Thu 8/21 16:00
+    6336b13 as7hp47 192.168.173.15:0.0 as7hp476336b1366513859 (v2019.09) (lic23/2700 8043), start Thu 8/21 16:05
+    6803b13 as6hp227 192.168.173.129:0.0 (v2017.06) (lic23/2700 2411), start Thu 8/21 16:13
+    6800b4 as6hp227 192.168.173.74:0.0 (v2017.06) (lic23/2700 9325), start Thu 8/21 16:59
+
+Users of VERDI-APEX:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of EUCLIDE-GUI:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of EUCLIDE-ELITE:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of EUCLIDE-INTR-LINT:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-APEX-RUNTIME:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCSUltraRuntime_Net:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-ELITE-RUNTIME:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of VCSMXRunTime_Net:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of VCSMXCompiler_Net:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-ELITE-COMPILE:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-APEX-COMPILE:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCSUltraCompiler_Net:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-BASE-RUNTIME:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of VCSRuntime_Net:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of VCS-BASE-COMPILE:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of VCSCompiler_Net:  (Total of 40 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-DPV:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-DPV-BASE-SH:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-BASE:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-AEP-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-ELITE-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-FPV-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-RMA-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-FRV-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-SEQ-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-FCA-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-CC-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-FXP-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-FTA-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-FLP-RT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-ELITE-SH:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-FORMAL-ULTRA:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-CDC-NETLIST:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-SG-APEX:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-STATIC-CDC-DEBUG-ML:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-STATIC-VDIFF:  (Total of 30 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-CDC-ADV:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of cdc_soc_abstraction:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of cdc_adv_checker:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of EUCLIDE-BTCH-TB:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of Advanced_CDC:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-SG-ELITE:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-CDC-BASE:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of system_verilog:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of BasePolicySO:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of oemunlock:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of checker:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of save_restore:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of gui:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of mixed:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of verilog:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-STATIC-LINT:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of vhdl:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-LINT-BASE:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-SG-BASE:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-LP-ULTRA:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-LP-ULTRA-RTL:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-LP-ELITE:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-LP-CROSSOVER:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-STATIC-LP-DEBUG:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-LP-BASE:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of VC-STATIC-LP:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of SIS_CORE:  (Total of 160 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeLib_CORE:  (Total of 160 licenses issued;  Total of 0 licenses in use)
+
+Users of PrimeLib_CHAR:  (Total of 20 licenses issued;  Total of 0 licenses in use)
+
+Users of PA-Elite-Tool:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of PA.primary:  (Total of 10 licenses issued;  Total of 0 licenses in use)
+
+Users of PA-Elite-Sim:  (Total of 100 licenses issued;  Total of 0 licenses in use)
+
+Users of checkpoint_restore:  (Total of 100 licenses issued;  Total of 0 licenses in use)
+
+Users of PAXRT.simulation:  (Total of 100 licenses issued;  Total of 0 licenses in use)
+
+

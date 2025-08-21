@@ -1,26 +1,24 @@
 #!/bin/bash
-# parse_lmstat_final_v2.sh
-# 用法: ./parse_lmstat_final_v2.sh lmstat.log
+# parse_lmstat_to_sql.sh
+# 用法: ./parse_lmstat_to_sql.sh lmstat.log licenses.sql
 # 支持 Mentor / Synopsys / Cadence
-# 输出 CSV，不包含 floating license、queued、Display
-# 处理 Cadence ", X licenses" 末尾
+# 生成 SQL 文件，可直接导入 MySQL
 
 logfile="$1"
+sqlfile="$2"
 
-awk '
-BEGIN {
-    OFS=","
-    print "Feature,User,Host,Version,LicServer,Port,SessionID,StartTime,Expiry"
-}
+echo "USE licenseDB;" > "$sqlfile"
+echo "INSERT INTO licenses (Feature,User,Host,Version,LicServer,Port,SessionID,StartTime,Expiry) VALUES" >> "$sqlfile"
 
-# 捕获 Feature 名
+awk -v OFS="," '
+BEGIN { first=1 }
+
 /^Users of / {
     feature=$3
     sub(":", "", feature)
     expiry=""
 }
 
-# 捕获 expiry
 /^  "[^"]+"/ {
     if ($0 !~ /floating license/) {
         match($0, /expiry:[ \t]*([0-9a-zA-Z-]+)/, m)
@@ -28,34 +26,24 @@ BEGIN {
     }
 }
 
-# 过滤掉无用行
 /Total of [0-9]+ licenses issued/ { next }
 NF==0 { next }
 /queued/ { next }
 
-# 捕获用户行（包含 Mentor / Synopsys / Cadence）
 /^\s*[a-zA-Z0-9]/ {
     if ($0 !~ /floating license/ && $0 !~ /Display/) {
         line=$0
 
-        # user
         match(line, /^[ \t]*([^\t ,]+)/, m)
         user=m[1]
         sub(/^[ \t]*[^\t ,]+[ \t]+/, "", line)
 
-        # host
         host=""
-        if (match(line, /^([^\t ()]+)/, m2)) {
-            host=m2[1]
-        }
+        if (match(line, /^([^\t ()]+)/, m2)) host=m2[1]
 
-        # version
         ver=""
-        if (match($0, /\(v[0-9.]+\)/)) {
-            ver=substr($0, RSTART+2, RLENGTH-3)
-        }
+        if (match($0, /\(v[0-9.]+\)/)) ver=substr($0, RSTART+2, RLENGTH-3)
 
-        # license server / port / sessionid
         licserver=""
         port=""
         sid=""
@@ -65,16 +53,20 @@ NF==0 { next }
             sid=m3[3]
         }
 
-        # start time
         start=""
         if (match($0, /start .*/, m4)) {
             start=m4[0]
             sub("start ", "", start)
-            # 清理 Cadence ", X licenses"
             gsub(/, [0-9]+ licenses$/, "", start)
         }
 
-        print feature,user,host,ver,licserver,port,sid,start,expiry
+        # 生成 SQL
+        vals="(\x27"feature"\x27,\x27"user"\x27,\x27"host"\x27,\x27"ver"\x27,\x27"licserver"\x27,"port","sid",\x27"start"\x27,\x27"expiry"\x27)"
+        if (first==1) { print "  " vals; first=0 }
+        else { print " , " vals }
     }
 }
-' "$logfile"
+' "$logfile" >> "$sqlfile"
+
+echo ";" >> "$sqlfile"
+echo "SQL 文件已生成: $sqlfile"

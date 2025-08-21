@@ -1,0 +1,53 @@
+#!/bin/bash
+# 用法: ./parse_lmstat.sh lmstat.log
+# 输出 CSV: Feature,User,Host,IP,Version,LicServer,Port,SessionID,StartTime,Expiry
+
+logfile="$1"
+
+awk '
+BEGIN {
+    print "Feature,User,Host,IP,Version,LicServer,Port,SessionID,StartTime,Expiry"
+}
+
+/^Users of / {
+    feature=$3
+    sub(":", "", feature)
+    expiry=""   # 初始化
+}
+
+/^  "[^"]+"/ {
+    # 抓 expiry 信息
+    match($0, /expiry:[ \t]*([0-9a-zA-Z-]+)/i, m)
+    if (m[1] != "") {
+        expiry=m[1]
+    }
+}
+
+/^[ \t]+[a-zA-Z0-9._-]+ / {
+    # 用户行
+    user=$1
+    host=$2
+    ip=$3
+    ver=$4
+    serv=$5
+    start=$7" "$8" "$9
+
+    gsub("[()]", "", ip)
+    gsub("[()]", "", ver)
+    gsub("[()]", "", serv)
+
+    # 处理 ip:port 格式
+    split(ip, arr, ":")
+    ipaddr=arr[1]
+
+    # server 部分 server/port sessionid
+    split(serv, arr2, "/")
+    licserver=arr2[1]
+    split(arr2[2], arr3, " ")
+    port=arr3[1]
+    sessionid=arr3[2]
+
+    printf("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\n",
+           feature, user, host, ipaddr, ver, licserver, port, sessionid, start, expiry)
+}
+' "$logfile"

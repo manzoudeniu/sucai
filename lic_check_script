@@ -1,72 +1,87 @@
 #!/bin/bash
-# parse_lmstat_to_sql.sh
-# 用法: ./parse_lmstat_to_sql.sh lmstat.log licenses.sql
-# 支持 Mentor / Synopsys / Cadence
-# 生成 SQL 文件，可直接导入 MySQL
+# parse_lmstat_to_sql_enhanced.sh
+# 用法: ./parse_lmstat_to_sql_enhanced.sh lmstat.log > licenses.sql
 
 logfile="$1"
-sqlfile="$2"
 
-echo "USE licenseDB;" > "$sqlfile"
-echo "INSERT INTO licenses (Feature,User,Host,Version,LicServer,Port,SessionID,StartTime,Expiry) VALUES" >> "$sqlfile"
+awk '
+BEGIN {
+    FS=""
+    feature=""
+    user=""
+    host=""
+    version=""
+    licserver=""
+    port=""
+    session=""
+    starttime=""
+    expiry=""
+    print "BEGIN TRANSACTION;"
+}
 
-awk -v OFS="," '
-BEGIN { first=1 }
+# 提取 License Server 和 Port
+/^License server status:/ {
+    split($0,a,":")
+    split(a[2],b,"@")
+    if(length(b)==2){
+        licserver=b[2]
+        port=b[1]
+    } else {
+        licserver=a[2]
+        port=""
+    }
+}
 
+# 提取 Feature 名称
 /^Users of / {
     feature=$3
-    sub(":", "", feature)
-    expiry=""
+    sub("[:]", "", feature)
 }
 
+# 提取 Expiry 和 Version（Cadence/Synopsys/Mentor 格式）
 /^  "[^"]+"/ {
-    if ($0 !~ /floating license/) {
-        match($0, /expiry:[ \t]*([0-9a-zA-Z-]+)/, m)
-        if (m[1] != "") expiry=m[1]
+    if ($0 ~ /expiry:/) {
+        match($0, /expiry: ([^ ]+)/, m)
+        expiry=m[1]
+        # 提取 Version
+        if(match($0, /v[0-9.]+/, ver)) version=ver[0]
     }
 }
 
-/Total of [0-9]+ licenses issued/ { next }
-NF==0 { next }
-/queued/ { next }
+# 提取用户占用信息（多厂商兼容）
+/^[ \t]+[a-zA-Z0-9_-]+[ \t]+[a-zA-Z0-9_.:-]+[ \t]*(:[0-9]+)?[ \t]*\(v[0-9.]+/ {
+    line=$0
+    # User
+    match(line, /^[ \t]*([a-zA-Z0-9_-]+)/, u)
+    user=u[1]
+    # Host
+    match(line, /[ \t]+([a-zA-Z0-9_.-]+(:[0-9]+)?)/, h)
+    host=h[1]
+    # Version
+    match(line, /\(v([0-9.]+)/, v)
+    version=v[1]
+    # Session ID
+    match(line, /\([^)]+\)$/, s)
+    session=s[0]; gsub("[()]", "", session)
+    # StartTime
+    starttime=""
+    if(match(line, /start[ \t]+[^)]*/, t)) starttime=substr(line, RSTART+6, RLENGTH-6)
+    
+    # SQL 转义
+    gsub("'\''", "''", feature)
+    gsub("'\''", "''", user)
+    gsub("'\''", "''", host)
+    gsub("'\''", "''", version)
+    gsub("'\''", "''", licserver)
+    gsub("'\''", "''", port)
+    gsub("'\''", "''", session)
+    gsub("'\''", "''", starttime)
+    gsub("'\''", "''", expiry)
 
-/^\s*[a-zA-Z0-9]/ {
-    if ($0 !~ /floating license/ && $0 !~ /Display/) {
-        line=$0
-
-        match(line, /^[ \t]*([^\t ,]+)/, m)
-        user=m[1]
-        sub(/^[ \t]*[^\t ,]+[ \t]+/, "", line)
-
-        host=""
-        if (match(line, /^([^\t ()]+)/, m2)) host=m2[1]
-
-        ver=""
-        if (match($0, /\(v[0-9.]+\)/)) ver=substr($0, RSTART+2, RLENGTH-3)
-
-        licserver=""
-        port=""
-        sid=""
-        if (match($0, /\(([a-zA-Z0-9._-]+)\/([0-9]+) *([0-9]+)\)/, m3)) {
-            licserver=m3[1]
-            port=m3[2]
-            sid=m3[3]
-        }
-
-        start=""
-        if (match($0, /start .*/, m4)) {
-            start=m4[0]
-            sub("start ", "", start)
-            gsub(/, [0-9]+ licenses$/, "", start)
-        }
-
-        # 生成 SQL
-        vals="(\x27"feature"\x27,\x27"user"\x27,\x27"host"\x27,\x27"ver"\x27,\x27"licserver"\x27,"port","sid",\x27"start"\x27,\x27"expiry"\x27)"
-        if (first==1) { print "  " vals; first=0 }
-        else { print " , " vals }
-    }
+    printf "INSERT INTO licenses (Feature, User, Host, Version, LicServer, Port, SessionID, StartTime, Expiry) VALUES (\x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27);\n", feature, user, host, version, licserver, port, session, starttime, expiry
 }
-' "$logfile" >> "$sqlfile"
 
-echo ";" >> "$sqlfile"
-echo "SQL 文件已生成: $sqlfile"
+END {
+    print "COMMIT;"
+}
+' "$logfile"

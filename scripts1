@@ -1,0 +1,82 @@
+#!/bin/bash
+# parse_lmstat_final_sql.sh
+# 用法: ./parse_lmstat_final_sql.sh lmstat.log
+# 输出 SQL 插入语句
+
+logfile="$1"
+
+awk '
+BEGIN {
+    print "BEGIN TRANSACTION;"
+}
+
+# 捕获 Feature 名
+/^Users of / {
+    feature=$3
+    sub(":", "", feature)
+    expiry=""
+}
+
+# 捕获 expiry
+/^  "[^"]+"/ {
+    if ($0 !~ /floating license/) {
+        match($0, /expiry:[ \t]*([0-9a-zA-Z-]+)/, m)
+        if (m[1] != "") expiry=m[1]
+    }
+}
+
+# 过滤掉无用行
+/Total of [0-9]+ licenses issued/ { next }
+NF==0 { next }
+/queued/ { next }
+
+# 捕获用户行
+/^\s*[a-zA-Z0-9]/ {
+    if ($0 !~ /floating license/ && $0 !~ /Display/) {
+        line=$0
+
+        # user
+        match(line, /^[ \t]*([^\t ,]+)/, m)
+        user=m[1]
+        sub(/^[ \t]*[^\t ,]+[ \t]+/, "", line)
+
+        # host
+        host=""
+        if (match(line, /^([^\t ()]+)/, m2)) {
+            host=m2[1]
+        }
+
+        # version
+        ver=""
+        if (match($0, /\(v[0-9.]+\)/)) {
+            ver=substr($0, RSTART+2, RLENGTH-3)
+        }
+
+        # license server / port / sessionid
+        licserver=""
+        port=""
+        sid=""
+        if (match($0, /\(([a-zA-Z0-9._-]+)\/([0-9]+) *([0-9]+)\)/, m3)) {
+            licserver=m3[1]
+            port=m3[2]
+            sid=m3[3]
+        }
+
+        # start time
+        start=""
+        if (match($0, /start .*/, m4)) {
+            start=m4[0]
+            sub("start ", "", start)
+            gsub(/, [0-9]+ licenses$/, "", start)
+        }
+
+        # 输出 SQL 语句
+        printf "INSERT INTO license_usage (Feature, User, Host, Version, LicServer, Port, SessionID, StartTime, Expiry) VALUES ("
+        printf "\x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27, \x27%s\x27);\n", feature, user, host, ver, licserver, port, sid, start, expiry
+    }
+}
+
+END {
+    print "COMMIT;"
+}
+' "$logfile"

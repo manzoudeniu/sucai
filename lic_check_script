@@ -1,7 +1,9 @@
 #!/bin/bash
-# parse_lmstat_no_display.sh
-# 用法: ./parse_lmstat_no_display.sh lmstat.log
-# 输出 CSV，不包含 floating license，不输出 Display 字段
+# parse_lmstat_final_v2.sh
+# 用法: ./parse_lmstat_final_v2.sh lmstat.log
+# 支持 Mentor / Synopsys / Cadence
+# 输出 CSV，不包含 floating license、queued、Display
+# 处理 Cadence ", X licenses" 末尾
 
 logfile="$1"
 
@@ -26,15 +28,20 @@ BEGIN {
     }
 }
 
-# 捕获用户行
-/^\s+.*\(v.*\)\s+\(.*lic.*\)/ {
-    if ($0 !~ /floating license/) {
+# 过滤掉无用行
+/Total of [0-9]+ licenses issued/ { next }
+NF==0 { next }
+/queued/ { next }
+
+# 捕获用户行（包含 Mentor / Synopsys / Cadence）
+/^\s*[a-zA-Z0-9]/ {
+    if ($0 !~ /floating license/ && $0 !~ /Display/) {
         line=$0
 
         # user
-        match(line, /^[ \t]*([^\t ]+)/, m)
+        match(line, /^[ \t]*([^\t ,]+)/, m)
         user=m[1]
-        sub(/^[ \t]*[^\t ]+[ \t]+/, "", line)
+        sub(/^[ \t]*[^\t ,]+[ \t]+/, "", line)
 
         # host
         host=""
@@ -63,6 +70,8 @@ BEGIN {
         if (match($0, /start .*/, m4)) {
             start=m4[0]
             sub("start ", "", start)
+            # 清理 Cadence ", X licenses"
+            gsub(/, [0-9]+ licenses$/, "", start)
         }
 
         print feature,user,host,ver,licserver,port,sid,start,expiry

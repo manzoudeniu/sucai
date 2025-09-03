@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# 数据库连接信息
+DB_USER="root"
+DB_PASS="你的密码"
+DB_NAME="你的数据库"
+DB_HOST="localhost"
+
+# 查询 user_lic 表中 dept 为空的行，输出 id 和 user 字段
+mysql -u"$DB_USER" -p"$DB_PASS" -h"$DB_HOST" -D"$DB_NAME" -N -e "SELECT id,user FROM user_lic WHERE dept IS NULL OR dept='';" | while read id user; do
+    echo "处理用户: $user (id=$id)"
+
+    # 请求接口
+    resp=$(curl -s "http://uweb/dept.php?uid=$user")
+
+    # 拆分字段，取第4个
+    dept=$(echo "$resp" | awk -F',' '{print $4}')
+
+    if [[ -n "$dept" ]]; then
+        echo "更新 id=$id dept=$dept"
+        mysql -u"$DB_USER" -p"$DB_PASS" -h"$DB_HOST" -D"$DB_NAME" -e "UPDATE user_lic SET dept='${dept}' WHERE id=${id};"
+    else
+        echo "警告: 接口返回无效，跳过 id=$id"
+    fi
+done

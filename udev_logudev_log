@@ -1,0 +1,94 @@
+ubuntu (udev-worker)[2710]: 4-3: Spawned process '/usr/bin/python3 /usr/bin/monitor_usb_event.py -event 0781 5588 00000000000000000000' [2712] is taking longer than 59s to complete
+
+
+#!/usr/bin/python3
+
+import sys
+import subprocess
+import netifaces
+import os
+import mysql.connector
+
+DB_HOST = ""
+DB_USER = "root"
+DB_PASSWORD = "1234"
+DB_NAME = "nanosys"
+
+# 查询数据库中所有的 USB 设备
+def get_usb_exclude_list():
+    try:
+        DB_HOST = subprocess.check_output("cat /etc/dip", shell=True, text=True).strip()
+        conn = mysql.connector.connect(
+            host=DB_HOST, user=DB_USER, password=DB_PASSWORD, database=DB_NAME
+        )
+        cursor = conn.cursor()
+        cursor.execute("SELECT usbexid FROM usbexlist")
+        rows = cursor.fetchall()
+        usbids = []
+        for row in rows:
+            usbids.append(row[0]) 
+        conn.close()
+        return usbids
+    except mysql.connector.Error as err:
+        print(f"Database error: {err}")
+
+# 查询系统中所有的 USB 设备
+def get_connected_usb_devices():
+    cmd = "/etc/lsusbcc -v | grep Port | grep -v Hub | grep -v 'Human-Interface-Device' | grep -iv 'Audio' | awk '{print $6$7}'|sed 's/#/\\:/g'|tr '[A-Z]' '[a-z]'"
+    usb_devices = subprocess.check_output(cmd, shell=True, text=True).strip().split("\n")
+    usb_devices = list(set(usb_devices))
+    usb_devices = [d.strip(":") for d in usb_devices]
+    # print(usb_devices)
+    # return [line.strip() for line in usb_devices if line.strip()]
+    return usb_devices
+
+def main():
+    log_path = "/var/log/usb_log"
+    usbids = get_usb_exclude_list()
+    illegal_device = None
+    ipaddr = subprocess.check_output(['hostname', '-I'], text=True).strip()
+    display = subprocess.check_output("fgconsole", shell=True, text=True).strip()
+    display = int(display) - 1
+    if sys.argv[1] == "-event":
+        if len(sys.argv) == 5:
+            hub_id = f"{sys.argv[2]}:{sys.argv[3]}  #{sys.argv[4]}"
+            usb_device = f"{sys.argv[2]}:{sys.argv[3]}:{sys.argv[4]}"
+        elif len(sys.argv) == 4:
+            hub_id = f"{sys.argv[2]}:{sys.argv[3]}"
+            usb_device = f"{sys.argv[2]}:{sys.argv[3]}"
+        else:
+            return None
+        
+        cmd = "/etc/lsusbcc -v"
+        all_devices = subprocess.check_output(cmd, shell=True, text=True).strip().split("\n")
+        for dev1 in all_devices:
+            dev = dev1.split("Port:")[1]
+            if hub_id in dev:
+                if "Port" in dev or "Hub" in dev or "Human-Interface-Device" in dev or "Audio" in dev:
+                    return None
+        # print(usb_device)
+        if usb_device not in usbids:
+            illegal_device = usb_device
+    elif sys.argv[1] == "-boot":
+        usb_devices = get_connected_usb_devices()
+        for usb_device in usb_devices:
+            if usb_device not in usbids:
+                illegal_device = usb_device
+                break
+
+    if illegal_device != None:
+        message = f"[Plugged Warning] Unauthorized usb device {usb_device} plugged in {ipaddr} Thin Client!"
+        # print(message)
+        bootserver = subprocess.check_output("cat /etc/dip", shell=True, text=True).strip()
+        # mailcmd = f"'wget --post-data 'message={message}&action=mail' http://{bootserver}/usb_notification.php -O /dev/null  >/dev/null 2>&1' >> /tmp/message"
+        mailcmd = f"wget --post-data 'message={message}&action=all' http://{bootserver}/usb_notification.php -O /dev/null  >/dev/null 2>&1"
+        subprocess.run(mailcmd, shell=True, text=True)
+        with open(log_path, 'a') as f:
+            f.write(message)
+        if sys.argv[1] != "-boot":
+            warningcmd = f"DISPLAY=:{display}.0 zenity --warning --width=500 --height=100 --title='Information'\
+            --text='{message} If you have further questions, please feel free to contact Jennifer Chen 3149.'"
+            subprocess.run(warningcmd, shell=True, text=True)
+
+if __name__ == "__main__":
+    main()

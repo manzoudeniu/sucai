@@ -1,0 +1,13 @@
+ACTION=="add", SUBSYSTEM=="usb", RUN+="/usr/bin/nohup /usr/bin/python3 /root/test.py -event %k >/tmp/test.log 2>&1 &"
+
+
+ACTION=="add", SUBSYSTEM=="usb", TAG+="systemd", ENV{SYSTEMD_WANTS}="usb-event.service"
+[Unit]
+Description=USB Event Handler
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /root/test.py -event %I
+StandardOutput=append:/var/log/usb-event.log
+StandardError=append:/var/log/usb-event.log
+sudo systemctl daemon-reload

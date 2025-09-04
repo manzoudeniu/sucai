@@ -11,3 +11,10 @@ ExecStart=/usr/bin/python3 /root/test.py -event %I
 StandardOutput=append:/var/log/usb-event.log
 StandardError=append:/var/log/usb-event.log
 sudo systemctl daemon-reload
+
+
+# 监控 USB 插入事件并后台执行你的脚本
+ACTION=="add", SUBSYSTEM=="usb", RUN+="/usr/bin/systemd-run --no-block /usr/bin/python3 /usr/bin/monitor_usb_event.py -event %E{ID_VENDOR_ID} %E{ID_MODEL_ID} %E{ID_SERIAL_SHORT}"
+
+ACTION=="add", SUBSYSTEM=="usb", RUN+="/bin/sh -c '/usr/bin/python3 /usr/bin/monitor_usb_event.py -event %E{ID_VENDOR_ID} %E{ID_MODEL_ID} %E{ID_SERIAL_SHORT} &'"
+

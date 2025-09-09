@@ -1,3 +1,4 @@
+
 1️⃣ 驱动安装与检测
 
 Ubuntu 默认带 ALSA 驱动，大部分声卡和 USB 耳机即插即用。
@@ -313,6 +314,8 @@ M 06:33:27.265699   script/libcamera libcamera.lua:173:chunk: PipeWire's libcame
 M 06:33:27.268755          wp-device ../lib/wp/device.c:619:wp_spa_device_new_from_spa_factory: SPA handle 'api.bluez5.enum.dbus' could not be loaded; is it installed?
 M 06:33:27.268763       script/bluez bluez.lua:397:createMonitor: PipeWire's BlueZ SPA missing or broken. Bluetooth not supported.
 
+/etc/pipewire/wireplumber/main.lua.d/50-alsa-config.lua
+/etc/pipewire/wireplumber/main.lua.d/50-bluez-config.lua
 
 
 

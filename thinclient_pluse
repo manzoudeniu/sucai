@@ -306,6 +306,12 @@ systemctl enable --now pipewire-root.service
 
 
 
+[W][08301.300094] mod.jackdbus-detect | [module-jackdbus-:  216 on_is_started_received()] Failed to receive jackdbus reply: org.freedesktop.DBus.Error.ServiceUnknown: The name org.jackaudio.service was not provided by any .service files
+root@ubuntu:/lib/systemd/system# /usr/bin/wireplumber
+M 06:33:27.265676          wp-device ../lib/wp/device.c:619:wp_spa_device_new_from_spa_factory: SPA handle 'api.libcamera.enum.manager' could not be loaded; is it installed?
+M 06:33:27.265699   script/libcamera libcamera.lua:173:chunk: PipeWire's libcamera SPA missing or broken. libcamera not supported.
+M 06:33:27.268755          wp-device ../lib/wp/device.c:619:wp_spa_device_new_from_spa_factory: SPA handle 'api.bluez5.enum.dbus' could not be loaded; is it installed?
+M 06:33:27.268763       script/bluez bluez.lua:397:createMonitor: PipeWire's BlueZ SPA missing or broken. Bluetooth not supported.
 
 
 

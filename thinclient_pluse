@@ -192,4 +192,69 @@ pactl info | grep "Server Name"
 正常应显示：
 
 Server Name: PulseAudio (on PipeWire 0.3.x)
+Sep 09 03:32:29 ubuntu systemd[3890]: wireplumber.service: Bound to unit pipewi>
+Sep 09 03:32:29 ubuntu systemd[3890]: Dependency failed for wireplumber.service>
+-- Subject: A start job for unit UNIT has failed
+-- Defined-By: systemd
+-- Support: http://www.ubuntu.com/support
+--
+-- A start job for unit UNIT has finished with a failure.
+--
+-- The job identifier is 176 and the job result is dependency.
+Sep 09 03:32:29 ubuntu systemd[3890]: wireplumber.service: Job wireplumber.serv>
+
+root@ubuntu:~# systemctl status  wireplumber
+Unit wireplumber.service could not be found.
+root@ubuntu:~# systemctl --user start wireplumber
+A dependency job for wireplumber.service failed. See 'journalctl -xe' for detail                                                                                                                                                           s.
+root@ubuntu:~# systemctl status pipewire
+Unit pipewire.service could not be found.
+root@ubuntu:~# systemctl status^Cipewire
+root@ubuntu:~# systemctl --user start wireplumber
+A dependency job for wireplumber.service failed. See 'journalctl -xe' for detail                                                                                                                                                           s.
+root@ubuntu:~# systemctl --user start pipewire
+root@ubuntu:~# systemctl --user status pipewire
+* pipewire.service - PipeWire Multimedia Service
+     Loaded: loaded (/usr/lib/systemd/user/pipewire.service; enabled; preset: en                                                                                                                                                           abled)
+     Active: inactive (dead)
+TriggeredBy: * pipewire.socket
+  Condition: start condition unmet at Tue 2025-09-09 03:34:01 UTC; 6s ago
+             `- ConditionUser=!root was not met
+
+Sep 09 03:16:40 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser                                                                                                                                                           vice was skipped because of an unmet condition check (ConditionUser=!root).
+Sep 09 03:30:55 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser                                                                                                                                                           vice was skipped because of an unmet condition check (ConditionUser=!root).
+Sep 09 03:30:55 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser                                                                                                                                                           vice was skipped because of an unmet condition check (ConditionUser=!root).
+Sep 09 03:31:58 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser                                                                                                                                                           vice was skipped because of an unmet condition check (ConditionUser=!root).
+Sep 09 03:31:58 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser                                                                                                                                                           vice was skipped because of an unmet condition check (ConditionUser=!root).
+Sep 09 03:32:13 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser                                                                                                                                                           vice was skipped because of an unmet condition check (ConditionUser=!root).
+Sep 09 03:32:29 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser                                                                                                                                                           vice was skipped because of an unmet condition check (ConditionUser=!root).
+Sep 09 03:33:25 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser                                                                                                                                                           vice was skipped because of an unmet condition check (ConditionUser=!root).
+Sep 09 03:33:53 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser                                                                                                                                                           vice was skipped because of an unmet condition check (ConditionUser=!root).
+Sep 09 03:34:01 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser                                                                                                                                                           vice was skipped because of an unmet condition check (ConditionUser=!root).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

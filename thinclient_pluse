@@ -258,7 +258,51 @@ WantedBy=multi-user.target
 
 
 
+apt update
+apt install --no-install-recommends \
+    pipewire \
+    wireplumber \
+    libspa-0.2-modules \
+    alsa-utils \
+    -y
+说明：
 
+pipewire → 核心服务
+
+wireplumber → 会话管理器
+
+libspa-0.2-modules → 提供 ALSA、PulseAudio 兼容模块
+
+alsa-utils → 用于测试声音（speaker-test、aplay）
+
+3️⃣ 自定义 systemd 服务（root 用户专用）
+因为瘦客户机通常只有 root，所以要写一个自定义服务（而不是 --user）。
+
+创建 /etc/systemd/system/pipewire-root.service：
+
+ini
+复制代码
+[Unit]
+Description=PipeWire Multimedia Service (Root)
+After=sound.target network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/pipewire
+ExecStartPost=/usr/bin/wireplumber
+Restart=on-failure
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
+启用：
+
+bash
+复制代码
+systemctl daemon-reload
+systemctl enable --now pipewire-root.service
 
 
 

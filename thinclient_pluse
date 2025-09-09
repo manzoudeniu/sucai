@@ -237,6 +237,23 @@ Sep 09 03:34:01 ubuntu systemd[3890]: pipewire.service - PipeWire Multimedia Ser
 
 
 
+[Unit]
+Description=PipeWire Multimedia Service (Root)
+After=sound.target network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/pipewire
+ExecStartPost=/usr/bin/wireplumber
+Restart=on-failure
+Environment=PIPEWIRE_LATENCY=128/48000
+# 允许 root 用户启动
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
 
 
 

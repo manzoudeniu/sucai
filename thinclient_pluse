@@ -157,5 +157,39 @@ Linux → ThinClient：
 
 实时多媒体可用 GStreamer RTP/WebRTC
 
+🔎 排查步骤
+1. 确认安装包完整
 
+运行：
+
+sudo apt install pipewire wireplumber libspa-0.2-bluetooth libspa-0.2-jack -y
+
+2. 确认用户 systemd 是否启用
+loginctl show-user $USER | grep Linger
+
+
+如果显示 Linger=no，启用：
+
+sudo loginctl enable-linger $USER
+
+3. 手动启动测试
+
+不用 enable，先尝试直接运行：
+
+systemctl --user start pipewire.service
+systemctl --user start wireplumber.service
+
+
+再检查状态：
+
+systemctl --user status pipewire.service
+systemctl --user status wireplumber.service
+
+4. 验证 PipeWire 是否工作
+pactl info | grep "Server Name"
+
+
+正常应显示：
+
+Server Name: PulseAudio (on PipeWire 0.3.x)
 

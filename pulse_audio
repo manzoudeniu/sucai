@@ -1,0 +1,3 @@
+xfreerdp /u:USERNAME /p:PASSWORD /v:WINDOWS_HOST \
+         /sound:sys:pa /microphone:sys:pa \
+         /clipboard /dynamic-resolution /cert-ignore

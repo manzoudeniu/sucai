@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# 旧数据库信息
+OLD_DB_HOST="localhost"
+OLD_DB_USER="old_user"
+OLD_DB_PASS="old_password"
+OLD_DB_NAME="old_db"
+OLD_TABLE="old_table"
+
+# 新数据库信息
+NEW_DB_HOST="localhost"
+NEW_DB_USER="new_user"
+NEW_DB_PASS="new_password"
+NEW_DB_NAME="new_db"
+NEW_TABLE="new_table"
+
+# 新增字段默认值 (这里用当前时间)
+UPTIME_DEFAULT=$(date '+%Y-%m-%d %H:%M:%S')
+
+# 获取旧数据库字段列表（排除 uptime）
+FIELDS=$(mysql -h $OLD_DB_HOST -u $OLD_DB_USER -p$OLD_DB_PASS $OLD_DB_NAME -e "SHOW COLUMNS FROM $OLD_TABLE;" | awk '{print $1}' | grep -v 'Field' | grep -v 'uptime' | tr '\n' ',' | sed 's/,$//')
+
+# 构造 SQL：从旧表 SELECT 并插入新表，同时添加 uptime 字段
+SQL="INSERT INTO $NEW_TABLE ($FIELDS, uptime) SELECT $FIELDS, '$UPTIME_DEFAULT' FROM $OLD_TABLE;"
+
+# 执行 SQL
+mysql -h $NEW_DB_HOST -u $NEW_DB_USER -p$NEW_DB_PASS $NEW_DB_NAME -e "$SQL"
+
+echo "数据迁移完成。"

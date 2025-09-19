@@ -1,0 +1,163 @@
+步骤 1: 安装 SLURM 并与 LSF 共存
+时间估算: 2-4 小时（取决于集群规模）
+
+安装 SLURM：
+
+在集群的所有节点上安装 SLURM，同时保留现有的 LSF 配置和作业调度。
+
+使用操作系统的包管理工具（如 apt-get、yum）安装 SLURM，或者从源代码安装。
+
+例如，使用 apt 安装 SLURM：
+
+sudo apt-get install slurm-wlm
+
+
+配置 SLURM 控制节点：
+
+配置 slurm.conf 文件，定义集群节点、分区、资源限制等。
+
+配置 SLURM 控制器（slurmctld）和工作节点（slurmd），使其能够与 LSF 环境共存。
+
+配置示例：
+
+NodeName=Node1 CPUs=8 State=UP
+PartitionName=default Nodes=Node1 Default=YES MaxTime=INFINITE State=UP
+
+
+配置 LSF 和 SLURM 并存：
+
+不要立即禁用 LSF，只是将 SLURM 安装并启用。
+
+设置环境变量（如 SLURM_HOME），确保 SLURM 和 LSF 都能正常运行。
+
+例如，在 /etc/profile 或 /etc/bashrc 中设置 SLURM 环境变量：
+
+export SLURM_HOME=/usr/local/slurm
+export PATH=$SLURM_HOME/bin:$PATH
+
+
+确保 LSF 和 SLURM 独立运行：
+
+确保 LSF 和 SLURM 使用不同的作业调度程序，不会互相干扰。例如，LSF 使用 bsub，而 SLURM 使用 sbatch。
+
+步骤 2: 迁移作业脚本和队列
+时间估算: 1-2 天（根据脚本数量和复杂度）
+
+检查现有 LSF 作业脚本：
+
+审查现有 LSF 作业脚本，识别所有 LSF 特有的命令和参数。
+
+LSF 作业脚本通常包含 #BSUB 指令，使用的资源例如 -n（任务数）、-R（资源请求）等。
+
+转换为 SLURM 作业脚本：
+
+将 LSF 脚本转换为 SLURM 脚本。SLURM 使用 #SBATCH 来指定作业参数。
+
+转换过程中，注意 LSF 与 SLURM 的参数映射：
+
+#BSUB -n → #SBATCH --ntasks
+
+#BSUB -q → #SBATCH --partition
+
+#BSUB -o → #SBATCH --output
+
+#BSUB -e → #SBATCH --error
+
+示例：
+LSF 脚本：
+
+#BSUB -J myjob
+#BSUB -q short
+#BSUB -o output.txt
+#BSUB -n 4
+
+
+转换为 SLURM 脚本：
+
+#SBATCH --job-name=myjob
+#SBATCH --partition=short
+#SBATCH --output=output.txt
+#SBATCH --ntasks=4
+
+
+测试 SLURM 脚本：
+
+在 SLURM 环境中测试转换后的作业脚本，确保作业能够正常提交、运行和完成。
+
+步骤 3: 配置 SLURM 作业调度
+时间估算: 2-3 小时
+
+配置 SLURM 调度器：
+
+设置 SLURM 中的调度器参数（如优先级、最大作业时间等），确保作业调度与 LSF 中的设置一致。
+
+设置 SLURM 分区和资源（如 --mem, --cpus-per-task）对应 LSF 的队列设置。
+
+保持 LSF 作业调度：
+
+在过渡期间，确保 LSF 仍然作为作业调度的后备系统。用户可以选择继续使用 LSF 或 SLURM 提交作业。
+
+配置 SLURM 和 LSF 之间的作业监控，使用户可以选择通过 LSF 或 SLURM 进行作业管理。
+
+步骤 4: 逐步切换用户作业
+时间估算: 1-2 周（根据集群规模）
+
+逐步过渡：
+
+让部分用户或部门逐步开始使用 SLURM 提交作业，而其他用户继续使用 LSF。
+
+在过渡过程中，可以让部分作业先通过 SLURM 调度，其他作业则继续通过 LSF。
+
+监控过渡状态：
+
+通过 squeue 和 sacct 等 SLURM 命令监控作业状态，确保没有作业丢失或出现错误。
+
+如果有问题，分析 SLURM 和 LSF 的作业日志进行调试。
+
+步骤 5: 禁用 LSF 并最终迁移
+时间估算: 1-2 天
+
+禁用 LSF：
+
+在确认 SLURM 已经稳定运行且没有问题后，禁用 LSF 的作业调度器和服务。
+
+停止 LSF 相关服务，确保 SLURM 完全接管所有作业调度任务。
+
+sudo systemctl stop lsf
+sudo systemctl disable lsf
+
+
+验证 SLURM 运行：
+
+完全切换到 SLURM 后，运行一批测试作业，确保集群的资源调度、作业分配和管理都能按预期正常工作。
+
+步骤 6: 优化 SLURM 配置和性能
+时间估算: 1-2 天（可根据需求逐步进行）
+
+SLURM 性能调优：
+
+根据集群负载和作业模式，对 SLURM 进行性能调优，例如调整作业调度算法、资源分配策略等。
+
+监控 SLURM 的资源使用情况，确保调度效率和公平性。
+
+更新用户文档：
+
+更新所有用户的作业提交文档和手册，确保他们能熟悉 SLURM 环境，了解新的作业脚本和作业管理方式。
+
+总结
+
+这整个过程会根据集群的规模、作业的复杂性以及过渡的平滑度有所不同。通常包括以下几个阶段：
+
+安装和配置 SLURM，并与 LSF 共存：2-4 小时
+
+迁移和转换作业脚本：1-2 天
+
+配置 SLURM 作业调度：2-3 小时
+
+逐步切换用户作业：1-2 周
+
+禁用 LSF 并最终迁移：1-2 天
+
+性能调优和文档更新：1-2 天
+
+这样可以保证 SLURM 的平稳过渡，同时保持 LSF 在初期的操作不中断。

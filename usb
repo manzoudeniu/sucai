@@ -1,0 +1,44 @@
+ul  2, 2025 14:58:57 Daemon starting up...
+Jul  2, 2025 14:58:57 USB device detected (KB USB KB Composite USB Device; VID 05d5; PID 624c; Serial ; Port 1-3).
+Jul  2, 2025 14:58:57 USB device detected (Logitech USB Optical Mouse; VID 046d; PID c077; Serial ; Port 1-4).
+Jul  2, 2025 14:58:57 USB device detected (VIA Technologies Inc. USB 2.0 BILLBOARD; VID 2109; PID 0100; Serial 0000000000000001; Port 3-1).
+Jul  2, 2025 14:58:57 TCPv4 server started on 0.0.0.0:32032
+Jul  2, 2025 14:58:57 RDP channel started
+Jul  2, 2025 14:58:57 Daemon started.
+Jul  2, 2025 14:58:57 Client connected from 192.168.172.110:43446
+Jul  2, 2025 14:59:22 USB device plugged (Digilent Adept USB Device Composite USB Device; VID 0403; PID 6010; Serial 003017ADA498; Port 1-1).
+
+
+
+
+   1: Logitech USB Optical Mouse - USB Mouse
+      Vid: 046d   Pid: c077   Port: 1-4
+      Status: plugged
+
+   2: VIA Technologies Inc. USB 2.0 BILLBOARD
+      Vid: 2109   Pid: 0100   Serial: 0000000000000001
+      Status: plugged
+
+   3: KB USB KB Composite USB Device
+      Vid: 05d5   Pid: 624c   Port: 1-3
+      Status: plugged
+
+   4: Digilent Adept USB Device Composite USB Device
+      Vid: 0403   Pid: 6010   Serial: 003017ADA498
+      Status: plugged
+
+root@ubuntu:~# tcpdump  -i any port 43446
+tcpdump: data link type LINUX_SLL2
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 262144 bytes
+15:30:03.249848 eno1  In  IP 192.168.172.110.43446 > ubuntu.32032: Flags [P.], seq 1206544154:1206544162, ack 3346870175, win 229, options [nop,nop,TS val 175725587 ecr 904819962], length 8
+15:30:03.250038 eno1  Out IP ubuntu.32032 > 192.168.172.110.43446: Flags [P.], seq 1:9, ack 8, win 510, options [nop,nop,TS val 904829991 ecr 175725587], length 8
+15:30:03.250548 eno1  In  IP 192.168.172.110.43446 > ubuntu.32032: Flags [.], ack 9, win 229, options [nop,nop,TS val 175725588 ecr 904829991], length 0
+15:30:13.279239 eno1  In  IP 192.168.172.110.43446 > ubuntu.32032: Flags [P.], seq 8:16, ack 9, win 229, options [nop,nop,TS val 175735617 ecr 904829991], length 8
+15:30:13.279459 eno1  Out IP ubuntu.32032 > 192.168.172.110.43446: Flags [P.], seq 9:17, ack 16, win 510, options [nop,nop,TS val 904840020 ecr 175735617], length 8
+15:30:13.279892 eno1  In  IP 192.168.172.110.43446 > ubuntu.32032: Flags [.], ack 17, win 229, options [nop,nop,TS val 175735618 ecr 904840020], length 0
+15:30:23.307935 eno1  In  IP 192.168.172.110.43446 > ubuntu.32032: Flags [P.], seq 16:24, ack 17, win 229, options [nop,nop,TS val 175745646 ecr 904840020], length 8
+15:30:23.308152 eno1  Out IP ubuntu.32032 > 192.168.172.110.43446: Flags [P.], seq 17:25, ack 24, win 510, options [nop,nop,TS val 904850049 ecr 175745646], length 8
+15:30:23.308671 eno1  In  IP 192.168.172.110.43446 > ubuntu.32032: Flags [.], ack 25, win 229, options [nop,nop,TS val 175745647 ecr 904850049], length 0
+
+

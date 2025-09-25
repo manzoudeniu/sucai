@@ -61,3 +61,4 @@ if ($conn->query($sql) === TRUE) {
 
 $conn->close();
 ?>
+2025-09-25 15:32:22 接收到数据: {"reqNo":"FTPR202509-07","projectCode":"ee55","Directory":"\/MXIC\/project\/ee55","ACL":[{"Directory":"\/MXIC\/project\/ee55","username":"Bill Wang\/TAIWAN\/MXIC","FTPAccount":"billwang01"},{"Directory":"\/MXIC\/project\/ee55","username":"Boyce Chen\/CHINA\/MXIC","FTPAccount":"boycechen"}]}

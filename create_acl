@@ -1,0 +1,29 @@
+#!/bin/bash
+# 用法: create_ftp_user_acl.sh <FTPAccount> <Directory>
+
+FTP_USER=$1
+PROJECT_DIR=$2
+
+# 确保目录存在
+if [ ! -d "$PROJECT_DIR" ]; then
+    mkdir -p "$PROJECT_DIR"
+    groupadd -f ftpusers
+    chown root:ftpusers "$PROJECT_DIR"
+    chmod 770 "$PROJECT_DIR"
+fi
+
+# 检查账号是否存在
+id "$FTP_USER" &>/dev/null
+if [ $? -ne 0 ]; then
+    useradd -M -s /sbin/nologin -g ftpusers "$FTP_USER"
+    PASS=$(openssl rand -base64 8)
+    echo "$FTP_USER:$PASS" | chpasswd
+    echo "创建 FTP 用户: $FTP_USER (密码: $PASS)"
+else
+    echo "用户 $FTP_USER 已存在，跳过创建"
+fi
+
+# 设置 ACL，默认 rwx
+setfacl -m u:"$FTP_USER":rwx "$PROJECT_DIR"
+
+echo "ACL 已设置: $FTP_USER -> $PROJECT_DIR (rwx)"

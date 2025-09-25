@@ -1,0 +1,23 @@
+-- 主申请表
+CREATE TABLE requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    reqNo VARCHAR(50) NOT NULL UNIQUE,        -- 申请单编号
+    projectCode VARCHAR(50) NOT NULL,         -- 项目代码
+    Directory VARCHAR(255) NOT NULL,          -- 目录路径
+    status ENUM('pending','完成','失败') DEFAULT 'pending',  -- 当前状态
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ACL 子表
+CREATE TABLE request_acl (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    request_id INT NOT NULL,                  -- 对应的申请单ID
+    Directory VARCHAR(255) NOT NULL,          -- 目录路径
+    username VARCHAR(255) NOT NULL,           -- 用户名（业务字段）
+    FTPAccount VARCHAR(100) NOT NULL,         -- 系统 FTP 账号
+    status ENUM('pending','成功','失败') DEFAULT 'pending',  -- 执行结果
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (request_id) REFERENCES requests(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -1,0 +1,99 @@
+<?php
+/**
+ * 单文件 FTP 账号申请 API
+ * 功能：
+ * 1. 接收 JSON 请求，入队。
+ * 2. 返回 "已接收" 给客户端。
+ * 3. 顺序执行队列任务（调用 Bash 脚本建 FTP 用户）。
+ * 4. 返回执行结果。
+ */
+
+// ==================== 配置 ====================
+$host = "localhost";
+$user = "root";
+$pass = "password";
+$db   = "test_db";
+$script = __DIR__ . "/create_ftp_user.sh"; // 建 FTP 用户的脚本
+
+header("Content-Type: application/json; charset=utf-8");
+
+// ==================== 数据库连接 ====================
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    echo json_encode(["status"=>"error","message"=>"数据库连接失败"]);
+    exit;
+}
+
+// ==================== 获取数据 ====================
+$rawData = file_get_contents("php://input");
+$data = json_decode($rawData, true);
+
+if (!$data) {
+    echo json_encode(["status"=>"error","message"=>"无效 JSON"]);
+    exit;
+}
+
+$username = $conn->real_escape_string($data["username"] ?? "");
+$password = $conn->real_escape_string($data["password"] ?? "");
+
+// ==================== 入队 ====================
+$sql = "INSERT INTO ftp_requests (username, password, status, raw_data, created_at) 
+        VALUES ('$username', '$password', 'pending', '" . $conn->real_escape_string($rawData) . "', NOW())";
+if (!$conn->query($sql)) {
+    echo json_encode(["status"=>"error","message"=>"入队失败: ".$conn->error]);
+    exit;
+}
+$task_id = $conn->insert_id;
+
+// ==================== 返回已接收 ====================
+echo json_encode([
+    "status"  => "received",
+    "message" => "任务已接收，正在排队",
+    "task_id" => $task_id
+]);
+
+// 立即返回客户端
+if (function_exists('fastcgi_finish_request')) {
+    fastcgi_finish_request();
+} else {
+    flush();
+}
+
+// ==================== 队列执行（加锁保证顺序） ====================
+$lock = fopen(__DIR__ . "/ftp_queue.lock", "w+");
+flock($lock, LOCK_EX); // 排他锁，保证单线程执行
+
+// 查找一个等待的任务（按顺序）
+$sql = "SELECT * FROM ftp_requests WHERE status='pending' ORDER BY id ASC LIMIT 1";
+$res = $conn->query($sql);
+if ($res && $res->num_rows > 0) {
+    $task = $res->fetch_assoc();
+    $id = $task["id"];
+    $u  = escapeshellarg($task["username"]);
+    $p  = escapeshellarg($task["password"]);
+
+    // 更新状态为 processing
+    $conn->query("UPDATE ftp_requests SET status='processing' WHERE id=$id");
+
+    // 执行脚本
+    $cmd = "bash $script $u $p 2>&1";
+    exec($cmd, $output, $ret);
+
+    $status = ($ret === 0) ? "success" : "failed";
+    $log    = $conn->real_escape_string(implode("\n", $output));
+
+    // 更新任务状态
+    $conn->query("UPDATE ftp_requests SET status='$status', log='$log' WHERE id=$id");
+}
+
+flock($lock, LOCK_UN);
+fclose($lock);
+
+$conn->close();
+?>
+
+curl -X POST http://server/ftp_api.php \
+     -H "Content-Type: application/json" \
+     -d '{"username":"tomftp","password":"123456"}'
+
+

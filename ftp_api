@@ -1,0 +1,63 @@
+<?php
+// 数据库配置
+$host = "localhost";
+$user = "root";
+$pass = "password";
+$db   = "test_db";
+
+// 设置返回 JSON
+header("Content-Type: application/json; charset=utf-8");
+
+// 连接数据库
+$conn = new mysqli($host, $user, $pass, $db);
+
+// 检查连接
+if ($conn->connect_error) {
+    http_response_code(500);
+    echo json_encode([
+        "status" => "error",
+        "message" => "数据库连接失败: " . $conn->connect_error
+    ]);
+    exit;
+}
+
+// 获取 POST 原始数据
+$rawData = file_get_contents("php://input");
+
+// === 写入日志 ===
+$logFile = __DIR__ . "/api.log";
+file_put_contents($logFile, date("Y-m-d H:i:s") . " 接收到数据: " . $rawData . PHP_EOL, FILE_APPEND);
+
+// 解析 JSON
+$data = json_decode($rawData, true);
+if (!$data) {
+    http_response_code(400);
+    echo json_encode([
+        "status" => "error",
+        "message" => "无效的 JSON 输入"
+    ]);
+    exit;
+}
+
+// 假设 JSON 格式 {"name": "Tom", "age": 20}
+$name = $conn->real_escape_string($data["name"] ?? "");
+$age  = intval($data["age"] ?? 0);
+
+// 插入数据库
+$sql = "INSERT INTO users (name, age) VALUES ('$name', $age)";
+if ($conn->query($sql) === TRUE) {
+    echo json_encode([
+        "status" => "success",
+        "message" => "数据接收成功",
+        "id" => $conn->insert_id
+    ]);
+} else {
+    http_response_code(500);
+    echo json_encode([
+        "status" => "error",
+        "message" => "插入失败: " . $conn->error
+    ]);
+}
+
+$conn->close();
+?>

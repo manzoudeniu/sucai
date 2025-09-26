@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# 数据库配置
+DB_HOST="127.0.0.1"
+DB_USER="your_user"
+DB_PASS="your_password"
+DB_NAME="your_db"
+TABLE="your_table"
+
+# 要检查的卷（键:卷名 值:阈值）
+declare -A VOLUME_THRESHOLDS=(
+    ["vol1"]=500
+    ["vol6"]=200
+)
+
+# 邮件收件人
+MAIL_TO="your_email@example.com"
+
+# 临时变量存储告警信息
+ALERT_MSG=""
+
+for VOLUME in "${!VOLUME_THRESHOLDS[@]}"; do
+    THRESHOLD=${VOLUME_THRESHOLDS[$VOLUME]}
+
+    # 查询最新 available 数值
+    AVAILABLE=$(mysql -h $DB_HOST -u $DB_USER -p$DB_PASS -D $DB_NAME -N -e "
+    SELECT available 
+    FROM $TABLE
+    WHERE volume = '$VOLUME'
+    ORDER BY time DESC
+    LIMIT 1;
+    ")
+
+    if [ -z "$AVAILABLE" ]; then
+        echo "未查到 $VOLUME 数据"
+        continue
+    fi
+
+    echo "最新 $VOLUME available = ${AVAILABLE} GB (阈值 ${THRESHOLD} GB)"
+
+    # 判断是否小于阈值
+    if (( $(echo "$AVAILABLE < $THRESHOLD" | bc -l) )); then
+        ALERT_MSG+="警告: Volume $VOLUME 可用空间不足 (${AVAILABLE}GB < ${THRESHOLD}GB)\n"
+    fi
+done
+
+# 如果有告警，统一发送一封邮件
+if [ -n "$ALERT_MSG" ]; then
+    echo -e "$ALERT_MSG" | mail -s "Volume 空间告警" "$MAIL_TO"
+    echo "⚠️ 已发送告警邮件："
+    echo -e "$ALERT_MSG"
+else
+    echo "✅ 所有卷空间均正常"
+fi

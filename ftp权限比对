@@ -1,0 +1,119 @@
+<?php
+/**
+ * 遍历 /mxic/ftp 下的目录，使用 getfacl 获取每个目录的 ACL
+ */
+
+// 1️⃣ 获取系统中 FTP 用户（home 在 /mxic/ftp 下）
+$systemUsers = [];
+$passwdFile = file('/etc/passwd', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+foreach ($passwdFile as $line) {
+    $parts = explode(':', $line);
+    $username = $parts[0];
+    $homeDir = $parts[5];
+    if (strpos($homeDir, '/mxic/ftp/') === 0) {
+        $systemUsers[] = $username;
+    }
+}
+
+// 2️⃣ 遍历 /mxic/ftp 下的一级目录
+$ftpBaseDir = '/mxic/ftp';
+$directories = [];
+foreach (scandir($ftpBaseDir) as $entry) {
+    if ($entry === '.' || $entry === '..') continue;
+    $fullPath = $ftpBaseDir . '/' . $entry;
+    if (is_dir($fullPath)) {
+        $directories[] = $fullPath;
+    }
+}
+
+// 3️⃣ 获取每个目录的 ACL
+$resultDirs = [];
+
+foreach ($directories as $dir) {
+    $aclList = [];
+
+    // 调用 getfacl 获取 ACL
+    $output = [];
+    $return_var = 0;
+    exec("getfacl -c " . escapeshellarg($dir), $output, $return_var);
+
+    if ($return_var === 0) {
+        foreach ($systemUsers as $user) {
+            $userPerm = 'none'; // 默认没有权限
+            foreach ($output as $line) {
+                // 匹配 ACL 行，如 "user:user1:rwx"
+                if (preg_match("/^user:$user:(\S+)/", $line, $matches)) {
+                    $userPerm = $matches[1];
+                    break;
+                }
+            }
+            $aclList[] = [
+                'user' => $user,
+                'permissions' => $userPerm
+            ];
+        }
+    } else {
+        // getfacl 命令失败
+        foreach ($systemUsers as $user) {
+            $aclList[] = [
+                'user' => $user,
+                'permissions' => 'unknown'
+            ];
+        }
+    }
+
+    $resultDirs[] = [
+        'directory' => $dir,
+        'acl' => $aclList
+    ];
+}
+
+// 4️⃣ 输出 JSON
+$result = [
+    'system_users' => $systemUsers,
+    'directories' => $resultDirs
+];
+
+header('Content-Type: application/json');
+echo json_encode($result, JSON_PRETTY_PRINT);
+$jsonData = json_encode($result, JSON_PRETTY_PRINT);
+$filePath = '/path/to/output/ftp_acl.json'; // 修改为你希望保存的路径
+file_put_contents($filePath, $jsonData);
+
+{
+  "system_users": [
+    "user1",
+    "user2",
+    "user3"
+  ],
+  "directories": [
+    {
+      "directory": "/mxic/ftp/dir1",
+      "acl": [
+        {"user": "user1", "permissions": "rwx"},
+        {"user": "user2", "permissions": "r-x"},
+        {"user3", "permissions": "none"}
+      ]
+    },
+    {
+      "directory": "/mxic/ftp/dir2",
+      "acl": [
+        {"user": "user1", "permissions": "rwx"},
+        {"user": "user2", "permissions": "rw-"},
+        {"user3", "permissions": "r--"}
+      ]
+    },
+    {
+      "directory": "/mxic/ftp/dir3",
+      "acl": [
+        {"user": "user1", "permissions": "r-x"},
+        {"user": "user2", "permissions": "none"},
+        {"user3", "permissions": "rwx"}
+      ]
+    }
+  ]
+}
+
+
+
